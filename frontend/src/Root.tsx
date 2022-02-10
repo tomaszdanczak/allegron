@@ -1,5 +1,5 @@
-function App() {
+function Root() {
   return <div className="App">Allegron</div>
 }
 
-export default App
+export default Root
