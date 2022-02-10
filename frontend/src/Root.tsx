@@ -1,5 +1,11 @@
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate'
+
 function Root() {
-  return <div className="text-3xl font-bold underline">Allegron</div>
+  return (
+    <MainTemplate>
+      <div className="text-3xl font-bold underline">Allegron</div>
+    </MainTemplate>
+  )
 }
 
 export default Root
