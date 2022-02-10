@@ -1,3 +1,4 @@
+import Banner from 'components/atoms/Banner/Banner'
 import { ReactNode } from 'react'
 
 type Props = {
@@ -5,5 +6,12 @@ type Props = {
 }
 
 export default function MainTemplate({ children }: Props) {
-  return <>{children}</>
+  return (
+    <>
+      <header>
+        <Banner />
+      </header>
+      <body>{children}</body>
+    </>
+  )
 }
