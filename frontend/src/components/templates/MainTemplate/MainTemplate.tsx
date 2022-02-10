@@ -1,4 +1,5 @@
 import Banner from 'components/atoms/Banner/Banner'
+import Navigation from 'components/molecules/Navigation/Navigation'
 import { ReactNode } from 'react'
 
 type Props = {
@@ -10,6 +11,7 @@ export default function MainTemplate({ children }: Props) {
     <>
       <header>
         <Banner />
+        <Navigation />
       </header>
       <body>{children}</body>
     </>
