@@ -1,5 +1,5 @@
 function Root() {
-  return <div className="underline text-3xl font-bold">Allegron</div>
+  return <div className="text-3xl font-bold underline">Allegron</div>
 }
 
 export default Root
