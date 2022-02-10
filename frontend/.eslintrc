@@ -1,0 +1,17 @@
+{
+  "extends": ["react-app", "plugin:prettier/recommended", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["warn", {
+      "singleQuote": true,
+      "printWidth": 80,
+      "semi": false,
+      "trailingComma": "all",
+      "tabWidth": 2,
+      "jsxSingleQuote": false,
+      "bracketSpacing": true,
+      "arrowParens": "always"
+    }],
+    "@typescript-eslint/no-unused-vars": ["error"]
+  }
+}
