@@ -1,4 +1,5 @@
 import Logo from 'components/atoms/Logo/Logo'
+import SearchBox from 'components/atoms/SearchBox/SearchBox'
 import DesktopMenu from 'components/molecules/DesktopMenu/DesktopMenu'
 
 export default function Navigation() {
@@ -18,7 +19,7 @@ export default function Navigation() {
 
           {/* ====================== Hamburger and Search (lg-) ====================== */}
           <div className="flex flex-1 items-center lg:hidden">
-            Hamburger and Search
+            <SearchBox />
           </div>
 
           {/* ====================== Logo (lg-) ====================== */}
@@ -27,7 +28,9 @@ export default function Navigation() {
           </div>
 
           {/* ====================== Rest (lg+ and lg-) ====================== */}
-          <div className="flex flex-1 items-center justify-end">Rest</div>
+          <div className="flex flex-1 items-center justify-end">
+            <SearchBox onlyLg />
+          </div>
         </div>
       </div>
     </div>

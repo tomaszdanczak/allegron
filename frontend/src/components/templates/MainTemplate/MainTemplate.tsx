@@ -13,7 +13,7 @@ export default function MainTemplate({ children }: Props) {
         <Banner />
         <Navigation />
       </header>
-      <body>{children}</body>
+      <div>{children}</div>
     </>
   )
 }
