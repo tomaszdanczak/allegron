@@ -1,3 +1,4 @@
+import HamburgerButton from 'components/atoms/HamburgerButton/HamburgerButton'
 import Logo from 'components/atoms/Logo/Logo'
 import SearchBox from 'components/atoms/SearchBox/SearchBox'
 import ShoppingCartButton from 'components/atoms/ShoppingCartButton/ShoppingCartButton'
@@ -20,6 +21,7 @@ export default function Navigation() {
 
           {/* ====================== Hamburger and Search (lg-) ====================== */}
           <div className="flex flex-1 items-center lg:hidden">
+            <HamburgerButton />
             <SearchBox />
           </div>
 
