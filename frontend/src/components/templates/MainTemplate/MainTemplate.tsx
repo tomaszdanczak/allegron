@@ -14,7 +14,9 @@ export default function MainTemplate({ children }: Props) {
         <Banner />
         <Navigation />
       </header>
-      <div className="flex-1">{children}</div>
+      <div className="mx-auto w-full max-w-7xl flex-1 px-4 pt-8 sm:px-6 lg:px-8">
+        {children}
+      </div>
       <Footer />
     </div>
   )
