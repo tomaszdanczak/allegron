@@ -1,4 +1,5 @@
 import Logo from 'components/atoms/Logo/Logo'
+import DesktopMenu from 'components/molecules/DesktopMenu/DesktopMenu'
 
 export default function Navigation() {
   return (
@@ -12,7 +13,7 @@ export default function Navigation() {
 
           {/* ====================== Desktop Menu (lg+) ====================== */}
           <div className="hidden h-full lg:flex lg:items-center">
-            Menu desktop
+            <DesktopMenu />
           </div>
 
           {/* ====================== Hamburger and Search (lg-) ====================== */}
