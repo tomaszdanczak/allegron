@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import Root from 'Root'
-import { BrowserRouter } from 'react-router-dom'
+
+import AppProviders from 'providers/AppProviders'
 
 // import { store } from "./app/store";
 // import { Provider } from "react-redux";
@@ -10,10 +11,9 @@ import { BrowserRouter } from 'react-router-dom'
 ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
-    <BrowserRouter>
+    <AppProviders>
       <Root />
-    </BrowserRouter>
-
+    </AppProviders>
     {/* </Provider> */}
   </React.StrictMode>,
   document.getElementById('root'),
