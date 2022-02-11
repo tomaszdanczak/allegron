@@ -2,6 +2,7 @@ import HamburgerButton from 'components/atoms/HamburgerButton/HamburgerButton'
 import Logo from 'components/atoms/Logo/Logo'
 import SearchBox from 'components/atoms/SearchBox/SearchBox'
 import ShoppingCartButton from 'components/atoms/ShoppingCartButton/ShoppingCartButton'
+import UserButton from 'components/atoms/UserButton/UserButton'
 import DesktopMenu from 'components/molecules/DesktopMenu/DesktopMenu'
 
 export default function Navigation() {
@@ -33,6 +34,7 @@ export default function Navigation() {
           {/* ====================== Rest (lg+ and lg-) ====================== */}
           <div className="flex flex-1 items-center justify-end">
             <SearchBox onlyLg />
+            <UserButton />
             <span
               className="mx-4 h-6 w-px bg-gray-200 lg:mx-6"
               aria-hidden="true"
