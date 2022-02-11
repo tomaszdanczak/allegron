@@ -13,5 +13,15 @@
       "arrowParens": "always"
     }],
     "@typescript-eslint/no-unused-vars": ["error"]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.stories.*"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ]
 }
