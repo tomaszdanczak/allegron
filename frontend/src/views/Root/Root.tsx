@@ -9,6 +9,7 @@ function Root() {
   return (
     <MainTemplate>
       <Routes>
+        <Route path="/:gender" element={<HomeScreen />} />
         <Route path="/" element={<HomeScreen />} />
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/signin" element={<SigninScreen />} />
