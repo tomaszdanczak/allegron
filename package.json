@@ -1,0 +1,26 @@
+{
+  "name": "allegron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "nodemon backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomaszdanczak/allegron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomaszdanczak/allegron/issues"
+  },
+  "homepage": "https://github.com/tomaszdanczak/allegron#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
