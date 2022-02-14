@@ -1,8 +1,15 @@
 import { useGetProductsQuery } from 'app/api/productsApi'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
+import MessageBox from 'components/atoms/MessageBox/MessageBox'
+
+let errorMsg: string
 
 export default function HomeScreen() {
-  const { data, isLoading } = useGetProductsQuery()
+  const { data, isLoading, isError, error = {} } = useGetProductsQuery()
+
+  if ('originalStatus' in error) {
+    errorMsg = `Request failed with status code ${error.originalStatus}`
+  }
 
   console.log('data:', data)
 
@@ -13,6 +20,8 @@ export default function HomeScreen() {
       </h2>
       {isLoading ? (
         <LoadingBox />
+      ) : isError ? (
+        <MessageBox variant="error">{errorMsg}</MessageBox>
       ) : (
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           products
