@@ -1,4 +1,4 @@
-import { useHamburger } from 'hooks/useHooks'
+import { useHamburger } from 'hooks/useHamburger'
 import { classNames } from 'helpers'
 import CloseMobileMenuButton from 'components/atoms/CloseMobileMenuButton/CloseMobileMenuButton'
 

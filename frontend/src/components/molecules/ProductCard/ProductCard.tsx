@@ -1,11 +1,17 @@
 import { IProduct } from 'types/product'
 import { useNavigate } from 'react-router-dom'
+import { useCurrency } from 'hooks/useCurrency'
+import { displayPriceWithCurrency } from 'helpers/index'
 
 export default function ProductCard({ product }: { product: IProduct }) {
   const { color, images, name, prices, _id } = product
+  const { currency } = useCurrency()
 
   const primaryImage =
     images.find((image) => image.primary === true) || images[0]
+
+  const priceInSelectedCurrency =
+    prices.find((price) => price.currency === currency) || prices[0]
 
   const navigate = useNavigate()
 
@@ -32,7 +38,9 @@ export default function ProductCard({ product }: { product: IProduct }) {
           </h3>
           <p className="mt-1 text-sm text-gray-500">{color}</p>
         </div>
-        <p className="text-sm font-medium text-gray-900">{prices[0].price}</p>
+        <p className="text-sm font-medium text-gray-900">
+          {displayPriceWithCurrency(priceInSelectedCurrency)}
+        </p>
       </div>
     </div>
   )
