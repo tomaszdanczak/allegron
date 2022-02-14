@@ -2,6 +2,7 @@ export interface IImage {
   _id: number
   imageSrc: string
   imageAlt: string
+  primary?: boolean
 }
 
 export interface IPrice {

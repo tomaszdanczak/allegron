@@ -17,6 +17,7 @@ const products = [
         imageSrc:
           "https://tailwindui.com/img/ecommerce-images/product-page-01-featured-product-shot.jpg",
         imageAlt: "Back of women's Basic Tee in black.",
+        primary: true,
       },
       {
         imageSrc:
@@ -59,6 +60,7 @@ const products = [
           "https://cdn.shopify.com/s/files/1/0167/4484/products/bone-8_1480x1836_crop_center.jpg?v=1591057410",
 
         imageAlt: "Back of women's Basic Tee in black.",
+        primary: true,
       },
       {
         imageSrc:
@@ -100,6 +102,7 @@ const products = [
         imageSrc:
           "https://cdn.shopify.com/s/files/1/0167/4484/products/willow7_1480x1836_crop_center.jpg?v=1591057818",
         imageAlt: "Back of women's Basic Tee in black.",
+        primary: true,
       },
       {
         imageSrc:
@@ -141,6 +144,7 @@ const products = [
         imageSrc:
           "https://cdn.shopify.com/s/files/1/0167/4484/products/sienna-6_1480x1836_crop_center.jpg?v=1591057540",
         imageAlt: "Back of women's Basic Tee in black.",
+        primary: true,
       },
       {
         imageSrc:

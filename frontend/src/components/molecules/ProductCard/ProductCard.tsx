@@ -4,17 +4,21 @@ import { useNavigate } from 'react-router-dom'
 export default function ProductCard({ product }: { product: IProduct }) {
   const { color, images, name, prices, _id } = product
 
+  const primaryImage =
+    images.find((image) => image.primary === true) || images[0]
+
   const navigate = useNavigate()
 
   const handleClick = () => {
     navigate(`/products/${_id}`)
   }
+
   return (
     <div className="group relative" onClick={handleClick}>
       <div className="min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
         <img
-          src={images[0].imageSrc}
-          alt={images[0].imageAlt}
+          src={primaryImage?.imageSrc}
+          alt={primaryImage?.imageAlt}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>
