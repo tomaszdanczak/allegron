@@ -1,5 +1,5 @@
 import { XIcon } from '@heroicons/react/outline'
-import { useHamburger } from 'hooks/useHooks'
+import { useHamburger } from 'hooks/useHamburger'
 
 export default function CloseMobileMenuButton() {
   const { closeMobileMenu } = useHamburger()

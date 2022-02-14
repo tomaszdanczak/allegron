@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const imageSchema = new Schema({
   imageSrc: { type: String, required: true },
   imageAlt: { type: String, required: true },
+  primary: { type: Boolean, required: true, default: false },
 });
 
 const priceSchema = new Schema({
