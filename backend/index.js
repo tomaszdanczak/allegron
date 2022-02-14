@@ -1,13 +1,6 @@
 require("dotenv").config();
 const { port } = require("./config");
-
-const express = require("express");
-
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Hello express");
-});
+const app = require("./app.js");
 
 app.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`);
