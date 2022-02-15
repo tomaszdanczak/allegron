@@ -4,6 +4,7 @@ import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import ProductDescription from 'components/atoms/ProductDescription/ProductDescription'
 import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDetailHeader'
+import ProductDetails from 'components/atoms/ProductDetails/ProductDetails'
 import Review from 'components/molecules/Review/Review'
 import { useCurrency } from 'hooks/useCurrency'
 import { useParams } from 'react-router-dom'
@@ -56,7 +57,7 @@ export default function ProductScreen() {
             </div>
 
             <ProductDescription description={product.description} />
-            <div>ProductDetails</div>
+            <ProductDetails details={product.details} />
             <div>Policies</div>
           </div>
         </div>
