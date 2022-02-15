@@ -9,6 +9,7 @@ import Review from 'components/molecules/Review/Review'
 import { useCurrency } from 'hooks/useCurrency'
 import { useParams } from 'react-router-dom'
 import { IProduct } from 'types/product'
+import Policies from 'components/molecules/Policies/Policies'
 
 let errorMsg: string
 
@@ -58,7 +59,7 @@ export default function ProductScreen() {
 
             <ProductDescription description={product.description} />
             <ProductDetails details={product.details} />
-            <div>Policies</div>
+            <Policies />
           </div>
         </div>
       )}
