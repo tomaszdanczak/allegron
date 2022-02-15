@@ -16,9 +16,15 @@ export default function ProductScreen() {
     error = {},
   } = useGetProductQuery(productId)
 
-  // TODO: Type guard
-  if ('originalStatus' in error) {
-    errorMsg = `Request failed with status code ${error.originalStatus}`
+  // Type guard
+  if ('status' in error) {
+    const { data }: any = error
+
+    if ('originalStatus' in error) {
+      errorMsg = `Request failed with status code ${error.originalStatus}.`
+    } else if ('status' in error) {
+      errorMsg = `Request failed with status code ${error.status}. ${data.message}`
+    }
   }
 
   return (
