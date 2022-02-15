@@ -10,6 +10,7 @@ import { useCurrency } from 'hooks/useCurrency'
 import { useParams } from 'react-router-dom'
 import { IProduct } from 'types/product'
 import Policies from 'components/molecules/Policies/Policies'
+import ImageGallery from 'components/molecules/ImageGallery/ImageGallery'
 
 let errorMsg: string
 
@@ -48,7 +49,7 @@ export default function ProductScreen() {
       ) : (
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
           <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
-            ImageGallery
+            <ImageGallery images={product.images} />
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
             <ProductDetailHeader name={name} priceInfo={priceInfo} />
