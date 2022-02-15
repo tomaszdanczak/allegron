@@ -8,10 +8,18 @@ export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function displayPriceWithCurrency(price: IPrice): string {
-  switch (price.currency) {
+export function displayPriceWithCurrency(priceInfo: IPrice): string {
+  switch (priceInfo.currency) {
     case 'USD':
-      return `$ ${price.price}`
+      return `$ ${priceInfo.price}`
+  }
+  return ``
+}
+
+export function displaySelectedCurrency(currency: string): string {
+  switch (currency) {
+    case 'USD':
+      return `$`
   }
   return ``
 }
