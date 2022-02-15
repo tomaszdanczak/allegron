@@ -2,6 +2,7 @@ import { useGetProductQuery } from 'app/api/productApi'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDetailHeader'
+import Review from 'components/molecules/Review/Review'
 import { useCurrency } from 'hooks/useCurrency'
 import { useParams } from 'react-router-dom'
 import { IProduct } from 'types/product'
@@ -47,7 +48,7 @@ export default function ProductScreen() {
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
             <ProductDetailHeader name={name} priceInfo={priceInfo} />
-            <div>Review</div>
+            <Review rating={product.rating} reviewCount={product.reviewCount} />
             <div>Button</div>
             <div>ProductDescription</div>
             <div>ProductDetails</div>
