@@ -2,6 +2,7 @@ import { useGetProductQuery } from 'app/api/productApi'
 import Button from 'components/atoms/Button/Button'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
+import ProductDescription from 'components/atoms/ProductDescription/ProductDescription'
 import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDetailHeader'
 import Review from 'components/molecules/Review/Review'
 import { useCurrency } from 'hooks/useCurrency'
@@ -54,7 +55,7 @@ export default function ProductScreen() {
               <Button text="Add to cart" onClick={() => {}} />
             </div>
 
-            <div>ProductDescription</div>
+            <ProductDescription description={product.description} />
             <div>ProductDetails</div>
             <div>Policies</div>
           </div>
