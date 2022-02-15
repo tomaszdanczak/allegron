@@ -1,4 +1,5 @@
 import { useGetProductQuery } from 'app/api/productApi'
+import Button from 'components/atoms/Button/Button'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDetailHeader'
@@ -49,7 +50,10 @@ export default function ProductScreen() {
           <div className="lg:col-span-5 lg:col-start-8">
             <ProductDetailHeader name={name} priceInfo={priceInfo} />
             <Review rating={product.rating} reviewCount={product.reviewCount} />
-            <div>Button</div>
+            <div className="mt-8">
+              <Button text="Add to cart" onClick={() => {}} />
+            </div>
+
             <div>ProductDescription</div>
             <div>ProductDetails</div>
             <div>Policies</div>
