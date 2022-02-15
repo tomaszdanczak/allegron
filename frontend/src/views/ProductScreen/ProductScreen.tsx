@@ -48,12 +48,16 @@ export default function ProductScreen() {
         <MessageBox variant="error">{errorMsg}</MessageBox>
       ) : (
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
-          <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
-            <ImageGallery images={product.images} />
-          </div>
           <div className="lg:col-span-5 lg:col-start-8">
             <ProductDetailHeader name={name} priceInfo={priceInfo} />
             <Review rating={product.rating} reviewCount={product.reviewCount} />
+          </div>
+
+          <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
+            <ImageGallery images={product.images} />
+          </div>
+
+          <div className="lg:col-span-5 lg:col-start-8">
             <div className="mt-8">
               <Button text="Add to cart" onClick={() => {}} />
             </div>
