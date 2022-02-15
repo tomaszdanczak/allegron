@@ -7,7 +7,7 @@ import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDet
 import ProductDetails from 'components/atoms/ProductDetails/ProductDetails'
 import Review from 'components/molecules/Review/Review'
 import { useCurrency } from 'hooks/useCurrency'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { IProduct } from 'types/product'
 import Policies from 'components/molecules/Policies/Policies'
 import ImageGallery from 'components/molecules/ImageGallery/ImageGallery'
@@ -48,16 +48,25 @@ export default function ProductScreen() {
         <MessageBox variant="error">{errorMsg}</MessageBox>
       ) : (
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-5 lg:col-start-8">
+          <div className="mb-2 ml-2 lg:col-span-7 lg:col-start-1 lg:row-span-1 lg:row-start-1 lg:mb-4 lg:ml-4 lg:mt-0">
+            <Link
+              to="/"
+              className="block text-indigo-500 hover:text-indigo-600"
+            >
+              ← Back to result
+            </Link>
+          </div>
+
+          <div className="lg:col-span-5 lg:col-start-8 lg:row-start-2">
             <ProductDetailHeader name={name} priceInfo={priceInfo} />
             <Review rating={product.rating} reviewCount={product.reviewCount} />
           </div>
 
-          <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
+          <div className=" lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-2 lg:mt-0">
             <ImageGallery images={product.images} />
           </div>
 
-          <div className="lg:col-span-5 lg:col-start-8">
+          <div className="lg:col-span-5 lg:col-start-8 lg:row-start-3">
             <div className="mt-8">
               <Button text="Add to cart" onClick={() => {}} />
             </div>
