@@ -27,6 +27,8 @@ export default function ProductScreen() {
     }
   }
 
+  console.log('product:', product)
+
   return (
     <div>
       {isLoading ? (
@@ -34,7 +36,19 @@ export default function ProductScreen() {
       ) : isError ? (
         <MessageBox variant="error">{errorMsg}</MessageBox>
       ) : (
-        <pre>{JSON.stringify(product, null, 2)}</pre>
+        <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
+          <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
+            ImageGallery
+          </div>
+          <div className="lg:col-span-5 lg:col-start-8">
+            <div>ProductDetailHeader</div>
+            <div>Review</div>
+            <div>Button</div>
+            <div>ProductDescription</div>
+            <div>ProductDetails</div>
+            <div>Policies</div>
+          </div>
+        </div>
       )}
     </div>
   )
