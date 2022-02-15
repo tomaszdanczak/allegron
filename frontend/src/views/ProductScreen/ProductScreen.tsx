@@ -1,6 +1,8 @@
 import { useGetProductQuery } from 'app/api/productApi'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
+import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDetailHeader'
+import { useCurrency } from 'hooks/useCurrency'
 import { useParams } from 'react-router-dom'
 import { IProduct } from 'types/product'
 
@@ -9,12 +11,17 @@ let errorMsg: string
 export default function ProductScreen() {
   const params = useParams()
   const { id: productId = '' } = params
+  const { currency } = useCurrency()
   const {
     data: product = {} as IProduct,
     isLoading,
     isError,
     error = {},
   } = useGetProductQuery(productId)
+
+  const { name, prices = [] } = product
+  const priceInfo =
+    prices.find((price) => price.currency === currency) || prices[0]
 
   // Type guard
   if ('status' in error) {
@@ -26,8 +33,6 @@ export default function ProductScreen() {
       errorMsg = `Request failed with status code ${error.status}. ${data.message}`
     }
   }
-
-  console.log('product:', product)
 
   return (
     <div>
@@ -41,7 +46,7 @@ export default function ProductScreen() {
             ImageGallery
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
-            <div>ProductDetailHeader</div>
+            <ProductDetailHeader name={name} priceInfo={priceInfo} />
             <div>Review</div>
             <div>Button</div>
             <div>ProductDescription</div>
