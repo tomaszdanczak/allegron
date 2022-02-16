@@ -22,8 +22,6 @@ export default function CartScreen() {
         </section>
         <OrderSummary />
       </form>
-
-      <pre>{JSON.stringify(cartItems, null, 2)}</pre>
     </>
   )
 }
