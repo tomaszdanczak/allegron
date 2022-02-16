@@ -1,3 +1,4 @@
+import CartItem from 'components/organisms/CartItem/CartItem'
 import { useCart } from 'hooks/useCart'
 
 export default function CartScreen() {
@@ -15,7 +16,9 @@ export default function CartScreen() {
           </h2>
 
           <ul className="divide-y divide-gray-200 border-t border-b border-gray-200">
-            CartItem x X
+            {cartItems.map((cartItem) => (
+              <CartItem key={cartItem._id} cartItem={cartItem} />
+            ))}
           </ul>
         </section>
         OrderSummary

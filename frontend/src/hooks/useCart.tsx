@@ -1,18 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { ReactNode } from 'react'
-import { IImage, IPrice } from 'types/product'
+import { ICartItem } from 'types/cartItem'
 
 type Props = {
   children: ReactNode
-}
-
-interface ICartItem {
-  _id: number
-  name: string
-  prices: IPrice[]
-  image: IImage
-  quantity: number
-  countInStock: number
 }
 
 const CartContext = React.createContext({
