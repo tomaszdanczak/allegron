@@ -13,11 +13,7 @@ const CurrencyContext = React.createContext({
 export const CurrencyProvider = ({ children }: Props) => {
   const [currency, setCurrency] = useState('USD')
 
-  return (
-    <CurrencyContext.Provider value={{ currency, setCurrency }}>
-      {children}
-    </CurrencyContext.Provider>
-  )
+  return <CurrencyContext.Provider value={{ currency, setCurrency }}>{children}</CurrencyContext.Provider>
 }
 
 export const useCurrency = () => {

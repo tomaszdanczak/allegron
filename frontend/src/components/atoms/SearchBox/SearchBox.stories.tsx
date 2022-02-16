@@ -7,9 +7,7 @@ export default {
   component: SearchBox,
 } as ComponentMeta<typeof SearchBox>
 
-const Template: ComponentStory<typeof SearchBox> = (args) => (
-  <SearchBox {...args} />
-)
+const Template: ComponentStory<typeof SearchBox> = (args) => <SearchBox {...args} />
 
 export const OnlyLg = Template.bind({})
 OnlyLg.args = {

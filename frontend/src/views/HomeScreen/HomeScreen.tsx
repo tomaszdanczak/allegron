@@ -6,12 +6,7 @@ import ProductCard from 'components/molecules/ProductCard/ProductCard'
 let errorMsg: string
 
 export default function HomeScreen() {
-  const {
-    data: products = [],
-    isLoading,
-    isError,
-    error = {},
-  } = useGetProductsQuery()
+  const { data: products = [], isLoading, isError, error = {} } = useGetProductsQuery()
 
   if ('originalStatus' in error) {
     errorMsg = `Request failed with status code ${error.originalStatus}`
@@ -19,9 +14,7 @@ export default function HomeScreen() {
 
   return (
     <>
-      <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-        Customers also purchased
-      </h2>
+      <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Customers also purchased</h2>
       {isLoading ? (
         <LoadingBox />
       ) : isError ? (

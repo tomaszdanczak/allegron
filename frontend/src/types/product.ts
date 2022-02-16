@@ -11,6 +11,12 @@ export interface IPrice {
   currency: string
 }
 
+export interface IDeliveryInfo {
+  _id: number
+  inStock: boolean
+  leadTime?: string
+}
+
 export interface IProduct {
   _id: number
   name: string
@@ -23,4 +29,5 @@ export interface IProduct {
   images: IImage[]
   description: string[]
   details: string[]
+  deliveryInfo: IDeliveryInfo
 }
