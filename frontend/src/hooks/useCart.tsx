@@ -9,6 +9,7 @@ type Props = {
 const CartContext = React.createContext({
   cartItems: [] as ICartItem[],
   addToCart: (newCartItem: ICartItem) => {},
+  removeFromCart: (_id: number) => {},
 })
 
 export const CartProvider = ({ children }: Props) => {
@@ -31,7 +32,13 @@ export const CartProvider = ({ children }: Props) => {
     }
   }
 
-  return <CartContext.Provider value={{ cartItems, addToCart }}>{children}</CartContext.Provider>
+  const removeFromCart = (_id: number) => {
+    const newCartItems = cartItems.filter((cartItem) => cartItem._id !== _id)
+
+    setCartItems(newCartItems)
+  }
+
+  return <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>{children}</CartContext.Provider>
 }
 
 export const useCart = () => {
