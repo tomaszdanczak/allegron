@@ -1,4 +1,5 @@
 import CartItem from 'components/organisms/CartItem/CartItem'
+import OrderSummary from 'components/organisms/OrderSummary/OrderSummary'
 import { useCart } from 'hooks/useCart'
 
 export default function CartScreen() {
@@ -19,7 +20,7 @@ export default function CartScreen() {
             ))}
           </ul>
         </section>
-        OrderSummary
+        <OrderSummary />
       </form>
 
       <pre>{JSON.stringify(cartItems, null, 2)}</pre>
