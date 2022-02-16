@@ -1,4 +1,4 @@
-import { IImage, IPrice } from 'types/product'
+import { IDeliveryInfo, IImage, IPrice } from 'types/product'
 
 export interface ICartItem {
   _id: number
@@ -7,4 +7,5 @@ export interface ICartItem {
   image: IImage
   quantity: number
   countInStock: number
+  deliveryInfo: IDeliveryInfo
 }

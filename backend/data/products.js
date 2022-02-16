@@ -40,6 +40,9 @@ const products = [
       "Pre-washed and pre-shrunk",
       "Machine wash cold with similar colors",
     ],
+    deliveryInfo: {
+      inStock: true,
+    },
   },
   {
     name: "Basic Teee",
@@ -83,6 +86,9 @@ const products = [
       "Pre-washed and pre-shrunk",
       "Machine wash cold with similar colors",
     ],
+    deliveryInfo: {
+      inStock: true,
+    },
   },
   {
     name: "Basic Tee",
@@ -125,6 +131,9 @@ const products = [
       "Pre-washed and pre-shrunk",
       "Machine wash cold with similar colors",
     ],
+    deliveryInfo: {
+      inStock: true,
+    },
   },
   {
     name: "Artwork Tee",
@@ -167,6 +176,9 @@ const products = [
       "Pre-washed and pre-shrunk",
       "Machine wash cold with similar colors",
     ],
+    deliveryInfo: {
+      leadTime: "3-4 weeks",
+    },
   },
 ];
 

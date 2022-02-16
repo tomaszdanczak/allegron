@@ -1,5 +1,6 @@
 import CartItemImage from 'components/atoms/CartItemImage/CartItemImage'
 import CartItemTitle from 'components/atoms/CartItemTitle/CartItemTitle'
+import LeadTime from 'components/atoms/LeadTime/LeadTime'
 import RemoveCartItemButton from 'components/atoms/RemoveCartItemButton/RemoveCartItemButton'
 import SelectQuantity from 'components/molecules/SelectQuantity/SelectQuantity'
 import { displaySelectedCurrency } from 'helpers'
@@ -31,7 +32,7 @@ export default function CartItem({ cartItem }: IProps) {
             <RemoveCartItemButton _id={cartItem._id} />
           </div>
         </div>
-        LeadTime
+        <LeadTime deliveryInfo={cartItem.deliveryInfo} />
       </div>
     </li>
   )

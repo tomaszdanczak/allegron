@@ -5,6 +5,7 @@ import { displayPriceWithCurrency } from 'helpers/index'
 
 export default function ProductCard({ product }: { product: IProduct }) {
   const { color, images, name, prices, _id } = product
+
   const { currency } = useCurrency()
 
   const primaryImage = images.find((image) => image.primary === true) || images[0]

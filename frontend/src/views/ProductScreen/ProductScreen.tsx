@@ -47,6 +47,7 @@ export default function ProductScreen() {
       image: product.images.find((image) => image.primary === true) || product.images[0],
       countInStock: product.countInStock,
       quantity,
+      deliveryInfo: product.deliveryInfo,
     }
 
     navigate('/cart')

@@ -12,6 +12,11 @@ const priceSchema = new Schema({
   currency: { type: String, required: true },
 });
 
+const deliverySchema = new Schema({
+  inStock: { type: Boolean, required: true, default: false },
+  leadTime: { type: String },
+});
+
 const productSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -24,6 +29,7 @@ const productSchema = new Schema(
     images: { type: [imageSchema], required: true },
     description: { type: [String], required: true },
     details: { type: [String], required: true },
+    deliveryInfo: { type: deliverySchema, required: true },
   },
   {
     timestamps: true,
