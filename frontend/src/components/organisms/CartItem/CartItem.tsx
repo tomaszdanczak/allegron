@@ -1,5 +1,6 @@
 import CartItemImage from 'components/atoms/CartItemImage/CartItemImage'
 import CartItemTitle from 'components/atoms/CartItemTitle/CartItemTitle'
+import RemoveCartItemButton from 'components/atoms/RemoveCartItemButton/RemoveCartItemButton'
 import SelectQuantity from 'components/molecules/SelectQuantity/SelectQuantity'
 import { displaySelectedCurrency } from 'helpers'
 import { useCurrency } from 'hooks/useCurrency'
@@ -26,7 +27,8 @@ export default function CartItem({ cartItem }: IProps) {
           </div>
 
           <div className='sm:pr-9" mt-4 sm:mt-0'>
-            <SelectQuantity _id={cartItem._id} quantity={cartItem.quantity} countInStock={cartItem.countInStock} name={cartItem.name} /> RemoveButton
+            <SelectQuantity _id={cartItem._id} quantity={cartItem.quantity} countInStock={cartItem.countInStock} name={cartItem.name} />
+            <RemoveCartItemButton _id={cartItem._id} />
           </div>
         </div>
         LeadTime
