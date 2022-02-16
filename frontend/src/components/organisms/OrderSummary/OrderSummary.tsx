@@ -74,7 +74,7 @@ export default function OrderSummary() {
         </div>
       </dl>
 
-      <Button text="Checkout" onClick={handleCheckoutButtonClick} />
+      <Button disabled={cartItems.length === 0 && true} text="Checkout" onClick={handleCheckoutButtonClick} />
     </section>
   )
 }

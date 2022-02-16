@@ -13,3 +13,9 @@ export const FullWidth = Template.bind({})
 FullWidth.args = {
   text: 'Add to cart',
 }
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  text: 'Add to cart',
+  disabled: true,
+}
