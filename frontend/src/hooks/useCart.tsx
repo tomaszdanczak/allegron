@@ -10,6 +10,7 @@ const CartContext = React.createContext({
   cartItems: [] as ICartItem[],
   addToCart: (newCartItem: ICartItem) => {},
   removeFromCart: (_id: number) => {},
+  updateCartItem: (_id: number, quantity: number) => {},
 })
 
 export const CartProvider = ({ children }: Props) => {
@@ -38,7 +39,19 @@ export const CartProvider = ({ children }: Props) => {
     setCartItems(newCartItems)
   }
 
-  return <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>{children}</CartContext.Provider>
+  const updateCartItem = (_id: number, quantity: number) => {
+    const newCartItems = cartItems.map((cartItem) => {
+      if (cartItem._id === _id) {
+        const newCartItem = { ...cartItem, quantity }
+        return newCartItem
+      }
+      return cartItem
+    })
+
+    setCartItems(newCartItems)
+  }
+
+  return <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateCartItem }}>{children}</CartContext.Provider>
 }
 
 export const useCart = () => {

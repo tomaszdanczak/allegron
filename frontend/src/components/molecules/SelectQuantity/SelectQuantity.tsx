@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react'
 import _ from 'lodash'
+import { useCart } from 'hooks/useCart'
 
 interface IProps {
   _id: number
@@ -10,11 +11,12 @@ interface IProps {
 
 export default function SelectQuantity({ _id, quantity, countInStock, name }: IProps) {
   const values = _.range(1, countInStock + 1)
+  const { updateCartItem } = useCart()
 
   const changeValueHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     const currentValue = parseInt(e.target.value)
 
-    console.log('currentValue:', currentValue)
+    updateCartItem(_id, currentValue)
   }
 
   return (
