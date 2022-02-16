@@ -7,17 +7,22 @@ import ProductDetailHeader from 'components/atoms/ProductDetailHeader/ProductDet
 import ProductDetails from 'components/atoms/ProductDetails/ProductDetails'
 import Review from 'components/molecules/Review/Review'
 import { useCurrency } from 'hooks/useCurrency'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { IProduct } from 'types/product'
 import Policies from 'components/molecules/Policies/Policies'
 import ImageGallery from 'components/molecules/ImageGallery/ImageGallery'
+import { useCart } from 'hooks/useCart'
 
 let errorMsg: string
 
 export default function ProductScreen() {
   const params = useParams()
   const { id: productId = '' } = params
+  const navigate = useNavigate()
+
   const { currency } = useCurrency()
+  const { addToCart } = useCart()
+
   const {
     data: product = {} as IProduct,
     isLoading,
@@ -38,6 +43,22 @@ export default function ProductScreen() {
     } else if ('status' in error) {
       errorMsg = `Request failed with status code ${error.status}. ${data.message}`
     }
+  }
+
+  const addToCartHandler = (quantity: number) => {
+    const cartItem = {
+      _id: product._id,
+      name: product.name,
+      prices: product.prices,
+      image:
+        product.images.find((image) => image.primary === true) ||
+        product.images[0],
+      countInStock: product.countInStock,
+      quantity,
+    }
+
+    navigate('/cart')
+    addToCart(cartItem)
   }
 
   return (
@@ -68,7 +89,7 @@ export default function ProductScreen() {
 
           <div className="lg:col-span-5 lg:col-start-8 lg:row-start-3">
             <div className="mt-8">
-              <Button text="Add to cart" onClick={() => {}} />
+              <Button text="Add to cart" onClick={() => addToCartHandler(1)} />
             </div>
 
             <ProductDescription description={product.description} />
