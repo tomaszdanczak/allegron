@@ -1,4 +1,5 @@
 import CartItemImage from 'components/atoms/CartItemImage/CartItemImage'
+import CartItemTitle from 'components/atoms/CartItemTitle/CartItemTitle'
 import { ICartItem } from 'types/cartItem'
 
 interface IProps {
@@ -12,7 +13,7 @@ export default function CartItem({ cartItem }: IProps) {
       <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div>
-            CartItemImageTitle
+            <CartItemTitle name={cartItem.name} _id={cartItem._id} />
             <p className="mt-1 text-sm font-medium text-gray-900">price</p>
           </div>
 
