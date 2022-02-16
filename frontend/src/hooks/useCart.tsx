@@ -15,18 +15,11 @@ export const CartProvider = ({ children }: Props) => {
   const [cartItems, setCartItems] = useState([] as ICartItem[])
 
   const addToCart = (newCartItem: ICartItem) => {
-    const existedCartItem = cartItems.find(
-      (cartItem) => cartItem._id === newCartItem._id,
-    )
-    const cartItemsWithoutExistedCartItem = cartItems.filter(
-      (cartItem) => cartItem._id !== newCartItem._id,
-    )
+    const existedCartItem = cartItems.find((cartItem) => cartItem._id === newCartItem._id)
+    const cartItemsWithoutExistedCartItem = cartItems.filter((cartItem) => cartItem._id !== newCartItem._id)
 
     if (existedCartItem) {
-      if (
-        existedCartItem.quantity + newCartItem.quantity >
-        newCartItem.countInStock
-      ) {
+      if (existedCartItem.quantity + newCartItem.quantity > newCartItem.countInStock) {
         newCartItem.quantity = newCartItem.countInStock
         setCartItems([newCartItem, ...cartItemsWithoutExistedCartItem])
       } else {
@@ -38,11 +31,7 @@ export const CartProvider = ({ children }: Props) => {
     }
   }
 
-  return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
-      {children}
-    </CartContext.Provider>
-  )
+  return <CartContext.Provider value={{ cartItems, addToCart }}>{children}</CartContext.Provider>
 }
 
 export const useCart = () => {

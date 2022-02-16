@@ -7,9 +7,7 @@ export default {
   component: MessageBox,
 } as ComponentMeta<typeof MessageBox>
 
-const Template: ComponentStory<typeof MessageBox> = (args) => (
-  <MessageBox {...args} />
-)
+const Template: ComponentStory<typeof MessageBox> = (args) => <MessageBox {...args} />
 
 export const Error = Template.bind({})
 Error.args = {

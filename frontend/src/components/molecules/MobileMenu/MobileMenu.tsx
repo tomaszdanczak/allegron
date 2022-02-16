@@ -16,9 +16,7 @@ export default function MobileMenu() {
         <CloseMobileMenuButton />
       </div>
       <div className="mt-2">
-        <div className="border-b border-gray-200 px-4">
-          Has not been implemented yet
-        </div>
+        <div className="border-b border-gray-200 px-4">Has not been implemented yet</div>
       </div>
     </div>
   )

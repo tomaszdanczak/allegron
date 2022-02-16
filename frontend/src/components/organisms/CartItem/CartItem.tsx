@@ -12,8 +12,7 @@ export default function CartItem({ cartItem }: IProps) {
   const { prices } = cartItem
   const { currency } = useCurrency()
 
-  const priceInfo =
-    prices.find((price) => price.currency === currency) || prices[0]
+  const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
 
   return (
     <li className="flex py-6 sm:py-10">
@@ -22,14 +21,10 @@ export default function CartItem({ cartItem }: IProps) {
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div>
             <CartItemTitle name={cartItem.name} _id={cartItem._id} />
-            <p className="mt-1 text-sm font-medium text-gray-900">{`${displaySelectedCurrency(
-              priceInfo.currency,
-            )}${priceInfo.price}`}</p>
+            <p className="mt-1 text-sm font-medium text-gray-900">{`${displaySelectedCurrency(priceInfo.currency)}${priceInfo.price}`}</p>
           </div>
 
-          <div className='className="mt-4 sm:pr-9" sm:mt-0'>
-            SelectQuantity RemoveButton
-          </div>
+          <div className='className="mt-4 sm:pr-9" sm:mt-0'>SelectQuantity RemoveButton</div>
         </div>
         LeadTime
       </div>

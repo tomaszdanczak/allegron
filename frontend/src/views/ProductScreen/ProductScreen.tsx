@@ -23,16 +23,10 @@ export default function ProductScreen() {
   const { currency } = useCurrency()
   const { addToCart } = useCart()
 
-  const {
-    data: product = {} as IProduct,
-    isLoading,
-    isError,
-    error = {},
-  } = useGetProductQuery(productId)
+  const { data: product = {} as IProduct, isLoading, isError, error = {} } = useGetProductQuery(productId)
 
   const { name, prices = [] } = product
-  const priceInfo =
-    prices.find((price) => price.currency === currency) || prices[0]
+  const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
 
   // Type guard
   if ('status' in error) {
@@ -50,9 +44,7 @@ export default function ProductScreen() {
       _id: product._id,
       name: product.name,
       prices: product.prices,
-      image:
-        product.images.find((image) => image.primary === true) ||
-        product.images[0],
+      image: product.images.find((image) => image.primary === true) || product.images[0],
       countInStock: product.countInStock,
       quantity,
     }
@@ -70,10 +62,7 @@ export default function ProductScreen() {
       ) : (
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
           <div className="mb-2 ml-2 lg:col-span-7 lg:col-start-1 lg:row-span-1 lg:row-start-1 lg:mb-4 lg:ml-4 lg:mt-0">
-            <Link
-              to="/"
-              className="block text-indigo-500 hover:text-indigo-600"
-            >
+            <Link to="/" className="block text-indigo-500 hover:text-indigo-600">
               ← Back to result
             </Link>
           </div>

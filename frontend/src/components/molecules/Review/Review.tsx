@@ -18,9 +18,7 @@ export default function Review({ rating, reviewCount }: IProps) {
         <Rating rating={rating} />
 
         <div className="ml-8 flex">
-          <p className="text-sm font-medium text-indigo-600">
-            {reviewCount} reviews
-          </p>
+          <p className="text-sm font-medium text-indigo-600">{reviewCount} reviews</p>
         </div>
       </div>
     </div>

@@ -38,10 +38,7 @@ export default function Navigation() {
             <div className="flex flex-1 items-center justify-end">
               <SearchBox onlyLg />
               <UserButton />
-              <span
-                className="mx-4 h-6 w-px bg-gray-200 lg:mx-6"
-                aria-hidden="true"
-              />
+              <span className="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />
               <ShoppingCartButton />
             </div>
           </div>

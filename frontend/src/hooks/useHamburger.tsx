@@ -22,13 +22,7 @@ export const HamburgerProvider = ({ children }: Props) => {
     setIsOpen(false)
   }
 
-  return (
-    <HamburgerContext.Provider
-      value={{ isOpen, openMobileMenu, closeMobileMenu }}
-    >
-      {children}
-    </HamburgerContext.Provider>
-  )
+  return <HamburgerContext.Provider value={{ isOpen, openMobileMenu, closeMobileMenu }}>{children}</HamburgerContext.Provider>
 }
 
 export const useHamburger = () => {

@@ -5,9 +5,7 @@ export default function CartScreen() {
   const { cartItems } = useCart()
   return (
     <>
-      <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        Shopping Cart
-      </h1>
+      <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
 
       <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
         <section aria-labelledby="cart-heading" className="lg:col-span-7">

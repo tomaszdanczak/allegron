@@ -11,13 +11,8 @@ export default function ImageGallery({ images }: IProps) {
 
   const handleChangeImage = (id: number) => {
     const selectedImage = images.find((image) => image._id === id) || images[0]
-    const imageGalleryWithoutSelectedImage = images.filter(
-      (image) => image._id !== id,
-    )
-    const newImagesGallery = [
-      selectedImage,
-      ...imageGalleryWithoutSelectedImage,
-    ]
+    const imageGalleryWithoutSelectedImage = images.filter((image) => image._id !== id)
+    const newImagesGallery = [selectedImage, ...imageGalleryWithoutSelectedImage]
     setImagesGallery(newImagesGallery)
   }
 
@@ -32,10 +27,7 @@ export default function ImageGallery({ images }: IProps) {
             src={image.imageSrc}
             alt={image.imageAlt}
             onClick={() => handleChangeImage(image._id)}
-            className={classNames(
-              index === 0 ? 'lg:col-span-2 lg:row-span-2' : 'hidden lg:block',
-              'rounded-lg',
-            )}
+            className={classNames(index === 0 ? 'lg:col-span-2 lg:row-span-2' : 'hidden lg:block', 'rounded-lg')}
           />
         ))}
       </div>
