@@ -24,7 +24,7 @@ export default function CartScreen() {
             </ul>
           ) : (
             <div className="h-full border-t border-gray-200 pt-8">
-              <Link to="/" className="ml-2 block text-indigo-500 hover:text-indigo-600">
+              <Link to="/" className="ml-2 text-indigo-500 hover:text-indigo-600">
                 ← Go shopping
               </Link>
               <div className="flex h-full w-full items-center justify-center">
