@@ -6,6 +6,11 @@ type Props = {
   children: ReactNode
 }
 
+let cartItemsFromLocalStorage = [] as ICartItem[]
+try {
+  cartItemsFromLocalStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') as string) : ([] as ICartItem[])
+} catch {}
+
 const CartContext = React.createContext({
   cartItems: [] as ICartItem[],
   addToCart: (newCartItem: ICartItem) => {},
@@ -14,7 +19,7 @@ const CartContext = React.createContext({
 })
 
 export const CartProvider = ({ children }: Props) => {
-  const [cartItems, setCartItems] = useState([] as ICartItem[])
+  const [cartItems, setCartItems] = useState(cartItemsFromLocalStorage)
 
   const addToCart = (newCartItem: ICartItem) => {
     const existedCartItem = cartItems.find((cartItem) => cartItem._id === newCartItem._id)
@@ -24,12 +29,15 @@ export const CartProvider = ({ children }: Props) => {
       if (existedCartItem.quantity + newCartItem.quantity > newCartItem.countInStock) {
         newCartItem.quantity = newCartItem.countInStock
         setCartItems([newCartItem, ...cartItemsWithoutExistedCartItem])
+        localStorage.setItem('cartItems', JSON.stringify([newCartItem, ...cartItemsWithoutExistedCartItem]))
       } else {
         newCartItem.quantity = newCartItem.quantity + existedCartItem.quantity
         setCartItems([newCartItem, ...cartItemsWithoutExistedCartItem])
+        localStorage.setItem('cartItems', JSON.stringify([newCartItem, ...cartItemsWithoutExistedCartItem]))
       }
     } else {
       setCartItems([newCartItem, ...cartItemsWithoutExistedCartItem])
+      localStorage.setItem('cartItems', JSON.stringify([newCartItem, ...cartItemsWithoutExistedCartItem]))
     }
   }
 
@@ -37,6 +45,7 @@ export const CartProvider = ({ children }: Props) => {
     const newCartItems = cartItems.filter((cartItem) => cartItem._id !== _id)
 
     setCartItems(newCartItems)
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems))
   }
 
   const updateCartItem = (_id: number, quantity: number) => {
@@ -49,6 +58,7 @@ export const CartProvider = ({ children }: Props) => {
     })
 
     setCartItems(newCartItems)
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems))
   }
 
   return <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateCartItem }}>{children}</CartContext.Provider>
