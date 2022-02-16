@@ -1,5 +1,6 @@
 import CartItemImage from 'components/atoms/CartItemImage/CartItemImage'
 import CartItemTitle from 'components/atoms/CartItemTitle/CartItemTitle'
+import SelectQuantity from 'components/molecules/SelectQuantity/SelectQuantity'
 import { displaySelectedCurrency } from 'helpers'
 import { useCurrency } from 'hooks/useCurrency'
 import { ICartItem } from 'types/cartItem'
@@ -24,7 +25,9 @@ export default function CartItem({ cartItem }: IProps) {
             <p className="mt-1 text-sm font-medium text-gray-900">{`${displaySelectedCurrency(priceInfo.currency)}${priceInfo.price}`}</p>
           </div>
 
-          <div className='className="mt-4 sm:pr-9" sm:mt-0'>SelectQuantity RemoveButton</div>
+          <div className='sm:pr-9" mt-4 sm:mt-0'>
+            <SelectQuantity _id={cartItem._id} quantity={cartItem.quantity} countInStock={cartItem.countInStock} name={cartItem.name} /> RemoveButton
+          </div>
         </div>
         LeadTime
       </div>
