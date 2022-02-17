@@ -1,6 +1,7 @@
 const User = require("../db/models/user-model");
 const bcrypt = require("bcryptjs");
 const users = require("../data/users");
+const generateToken = require("../helpers");
 
 class UserController {
   async seed(req, res) {
@@ -18,6 +19,7 @@ class UserController {
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          token: generateToken(user),
         });
         return;
       }
