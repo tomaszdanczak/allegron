@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function RememberMe() {
   return (
     <div className="flex items-center justify-between">
@@ -14,9 +16,9 @@ export default function RememberMe() {
       </div>
 
       <div className="text-sm">
-        <a href="/" className="font-medium text-indigo-600 hover:text-indigo-500">
-          Forgot your password?
-        </a>
+        <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
+          Create your account
+        </Link>
       </div>
     </div>
   )

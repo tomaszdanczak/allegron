@@ -1,5 +1,6 @@
 import Button from 'components/atoms/Button/Button'
 import RememberMe from 'components/atoms/RememberMe/RememberMe'
+import SigninOptions from 'components/molecules/SigninOptions/SigninOptions'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -40,6 +41,8 @@ export default function SigninForm() {
           <RememberMe />
 
           <Button text="Submit" type="submit" variant="small" />
+
+          <SigninOptions />
         </Form>
       </Formik>
     </>
