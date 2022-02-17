@@ -20,7 +20,6 @@ const validationSchema = Yup.object({
 export default function SigninForm() {
   return (
     <>
-      <h1>Subscribe!</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -31,7 +30,7 @@ export default function SigninForm() {
           }, 400)
         }}
       >
-        <Form className="">
+        <Form className="space-y-6">
           <TextInput label="Email Address" name="email" type="email" placeholder="Type your email" />
 
           <TextInput label="Password" name="password" type="password" />
