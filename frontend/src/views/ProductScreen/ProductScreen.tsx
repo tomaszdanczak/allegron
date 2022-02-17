@@ -79,7 +79,7 @@ export default function ProductScreen() {
 
           <div className="lg:col-span-5 lg:col-start-8 lg:row-start-3">
             <div className="mt-8">
-              <Button text="Add to cart" onClick={() => addToCartHandler(1)} />
+              <Button text="Add to cart" onClick={() => addToCartHandler(1)} variant="big" />
             </div>
 
             <ProductDescription description={product.description} />
