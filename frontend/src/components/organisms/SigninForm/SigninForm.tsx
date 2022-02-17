@@ -1,3 +1,4 @@
+import Button from 'components/atoms/Button/Button'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -35,7 +36,7 @@ export default function SigninForm() {
 
           <TextInput label="Password" name="password" type="password" />
 
-          <button type="submit">Submit</button>
+          <Button text="Submit" type="submit" variant="small" />
         </Form>
       </Formik>
     </>
