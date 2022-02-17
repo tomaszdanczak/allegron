@@ -1,4 +1,5 @@
-import { Formik, Form, useField, FieldHookConfig } from 'formik'
+import TextInput from 'components/molecules/TextInput/TextInput'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 interface IFormValues {
@@ -6,35 +7,23 @@ interface IFormValues {
   password: string
 }
 
-interface IMyProps {
-  label: string
+const initialValues: IFormValues = {
+  email: '',
+  password: '',
 }
 
-const MyTextInput = (props: IMyProps & FieldHookConfig<string>) => {
-  const [field, meta] = useField(props)
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{props.label}</label>
-      <input className="" {...field} />
-      {meta.touched && meta.error ? <div className="">{meta.error}</div> : null}
-    </>
-  )
-}
+const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email address').required('Email is equired'),
+  password: Yup.string().required('Password is required'),
+})
 
 export default function SigninForm() {
-  const initialValues: IFormValues = {
-    email: '',
-    password: '',
-  }
   return (
     <>
       <h1>Subscribe!</h1>
       <Formik
         initialValues={initialValues}
-        validationSchema={Yup.object({
-          email: Yup.string().email('Invalid email address').required('Email is equired'),
-          password: Yup.string().required('Password is required'),
-        })}
+        validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2))
@@ -43,9 +32,9 @@ export default function SigninForm() {
         }}
       >
         <Form className="">
-          <MyTextInput label="Email Address" name="email" type="email" placeholder="Type your email" />
+          <TextInput label="Email Address" name="email" type="email" placeholder="Type your email" />
 
-          <MyTextInput label="Password" name="password" type="text" />
+          <TextInput label="Password" name="password" type="password" />
 
           <button type="submit">Submit</button>
         </Form>
