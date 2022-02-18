@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom'
 import { selectCurrentUser, removeCredentials } from 'app/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useCart } from 'hooks/useCart'
 
 export default function Banner() {
   const userInfo = useSelector(selectCurrentUser)
   const dispatch = useDispatch()
+  const { removeAllItemsFromCart } = useCart()
 
   const singOutHandler = () => {
     dispatch(removeCredentials())
     localStorage.removeItem('userInfo')
+
+    removeAllItemsFromCart()
+    localStorage.removeItem('cartItems')
   }
 
   return (
