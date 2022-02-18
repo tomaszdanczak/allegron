@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { selectCurrentUser } from 'app/authSlice'
-import { removeCredentials } from 'app/authSlice'
+import { selectCurrentUser, removeCredentials } from 'app/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function Banner() {
