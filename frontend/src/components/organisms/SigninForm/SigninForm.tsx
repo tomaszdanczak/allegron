@@ -69,7 +69,7 @@ export default function SigninForm() {
 
           <RememberMe />
 
-          <Button text="Submit" type="submit" variant="small" />
+          <Button text="Sign In" type="submit" variant="small" />
 
           <SigninOptions />
         </Form>

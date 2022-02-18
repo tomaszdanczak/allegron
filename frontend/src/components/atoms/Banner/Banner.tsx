@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom'
 import { selectCurrentUser } from 'app/authSlice'
-import { useSelector } from 'react-redux'
+import { removeCredentials } from 'app/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Banner() {
   const userInfo = useSelector(selectCurrentUser)
+  const dispatch = useDispatch()
+
+  const singOutHandler = () => {
+    dispatch(removeCredentials())
+    localStorage.removeItem('userInfo')
+  }
 
   return (
     <div className="bg-indigo-600">
@@ -28,7 +35,9 @@ export default function Banner() {
               Sign in
             </Link>
           ) : (
-            <button className="text-sm font-medium text-white hover:text-gray-100">Sign Out</button>
+            <button onClick={singOutHandler} className="text-sm font-medium text-white hover:text-gray-100">
+              Sign Out
+            </button>
           )}
         </div>
       </div>
