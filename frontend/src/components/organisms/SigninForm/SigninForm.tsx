@@ -49,7 +49,9 @@ export default function SigninForm() {
       // Response with userInfo type guard
       if ('data' in response) {
         const userInfo = response.data
+
         dispatch(setCredentials(userInfo))
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
       }
     } catch {}
   }
