@@ -8,6 +8,8 @@ import { useSigninMutation } from 'app/api/userApi'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import { useState } from 'react'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from 'app/authSlice'
 
 interface IFormValues {
   email: string
@@ -27,12 +29,13 @@ const validationSchema = Yup.object({
 export default function SigninForm() {
   const [signIn, { isError, isLoading }] = useSigninMutation()
   const [errorMsg, setErrorMsg] = useState('')
+  const dispatch = useDispatch()
 
   const handleSubmit = async (values: IFormValues) => {
     try {
       const response = await signIn(values)
 
-      // Type guards
+      // Error response type guards
       if ('error' in response) {
         const { data }: any = response.error
 
@@ -41,6 +44,12 @@ export default function SigninForm() {
         } else if ('status' in response.error) {
           setErrorMsg(`Request failed with status code ${response.error.status}. ${data.message}`)
         }
+      }
+
+      // Response with userInfo type guard
+      if ('data' in response) {
+        const userInfo = response.data
+        dispatch(setCredentials(userInfo))
       }
     } catch {}
   }

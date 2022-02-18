@@ -1,14 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export interface User {
+export interface IUserInfo {
   _id: string
   name: string
   email: string
   isAdmin: boolean
-}
-
-export interface UserResponse {
-  user: User
   token: string
 }
 
@@ -23,7 +19,7 @@ export const userApi = createApi({
     baseUrl: '/',
   }),
   endpoints: (builder) => ({
-    signin: builder.mutation<UserResponse, LoginRequest>({
+    signin: builder.mutation<IUserInfo, LoginRequest>({
       query: (credentials) => ({
         url: 'api/users/signin',
         method: 'POST',
