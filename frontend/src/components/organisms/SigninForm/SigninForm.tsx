@@ -4,6 +4,10 @@ import SigninOptions from 'components/molecules/SigninOptions/SigninOptions'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { useSigninMutation } from 'app/api/userApi'
+import MessageBox from 'components/atoms/MessageBox/MessageBox'
+import { useState } from 'react'
+import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 
 interface IFormValues {
   email: string
@@ -21,19 +25,33 @@ const validationSchema = Yup.object({
 })
 
 export default function SigninForm() {
+  const [signIn, { isError, isLoading }] = useSigninMutation()
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleSubmit = async (values: IFormValues) => {
+    try {
+      const response = await signIn(values)
+
+      // Type guards
+      if ('error' in response) {
+        const { data }: any = response.error
+
+        if ('originalStatus' in response.error) {
+          setErrorMsg(`Request failed with status code ${response.error.originalStatus}.`)
+        } else if ('status' in response.error) {
+          setErrorMsg(`Request failed with status code ${response.error.status}. ${data.message}`)
+        }
+      }
+    } catch {}
+  }
+
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            setSubmitting(false)
-          }, 400)
-        }}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         <Form className="space-y-6">
+          {isLoading && <LoadingBox />}
+          {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
+
           <TextInput label="Email Address" name="email" type="email" placeholder="Type your email" />
 
           <TextInput label="Password" name="password" type="password" />
