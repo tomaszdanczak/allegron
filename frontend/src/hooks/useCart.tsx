@@ -14,7 +14,8 @@ try {
 const CartContext = React.createContext({
   cartItems: [] as ICartItem[],
   addToCart: (newCartItem: ICartItem) => {},
-  removeFromCart: (_id: number) => {},
+  removeItemFromCart: (_id: number) => {},
+  removeAllItemsFromCart: () => {},
   updateCartItem: (_id: number, quantity: number) => {},
 })
 
@@ -41,11 +42,15 @@ export const CartProvider = ({ children }: Props) => {
     }
   }
 
-  const removeFromCart = (_id: number) => {
+  const removeItemFromCart = (_id: number) => {
     const newCartItems = cartItems.filter((cartItem) => cartItem._id !== _id)
 
     setCartItems(newCartItems)
     localStorage.setItem('cartItems', JSON.stringify(newCartItems))
+  }
+
+  const removeAllItemsFromCart = () => {
+    setCartItems([])
   }
 
   const updateCartItem = (_id: number, quantity: number) => {
@@ -61,7 +66,11 @@ export const CartProvider = ({ children }: Props) => {
     localStorage.setItem('cartItems', JSON.stringify(newCartItems))
   }
 
-  return <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateCartItem }}>{children}</CartContext.Provider>
+  return (
+    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart, updateCartItem, removeAllItemsFromCart }}>
+      {children}
+    </CartContext.Provider>
+  )
 }
 
 export const useCart = () => {

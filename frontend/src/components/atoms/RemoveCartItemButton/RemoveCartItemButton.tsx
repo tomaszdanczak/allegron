@@ -6,10 +6,10 @@ interface IProps {
 }
 
 export default function RemoveCartItemButton({ _id }: IProps) {
-  const { removeFromCart } = useCart()
+  const { removeItemFromCart } = useCart()
 
   const removeCartItemHandler = (_id: number) => {
-    removeFromCart(_id)
+    removeItemFromCart(_id)
   }
 
   return (
