@@ -6,6 +6,8 @@ import * as Yup from 'yup'
 import { useState } from 'react'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from 'app/authSlice'
 
 interface IFormValues {
   name: string
@@ -31,6 +33,7 @@ const validationSchema = Yup.object({
 })
 
 export default function RegisterForm() {
+  const dispatch = useDispatch()
   const [register, { isLoading, isError }] = useRegisterMutation()
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -50,6 +53,14 @@ export default function RegisterForm() {
           } else if ('status' in response.error) {
             setErrorMsg(`Request failed with status code ${response.error.status}. ${data.message}`)
           }
+        }
+
+        // Response with userInfo type guard
+        if ('data' in response) {
+          const userInfo = response.data
+
+          dispatch(setCredentials(userInfo))
+          localStorage.setItem('userInfo', JSON.stringify(userInfo))
         }
       } catch {}
     }
