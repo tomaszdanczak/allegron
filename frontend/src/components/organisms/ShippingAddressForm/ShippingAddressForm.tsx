@@ -30,8 +30,8 @@ export default function ShippingAddressForm() {
   const { setShippingInfo } = useShippingInfo()
 
   const handleSubmit = (values: IShippingInfo) => {
-    console.log('values:', values)
     setShippingInfo(values)
+    localStorage.setItem('shippingInfo', JSON.stringify(values))
   }
 
   return (
