@@ -3,6 +3,8 @@ import Button from 'components/atoms/Button/Button'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { useState } from 'react'
+import MessageBox from 'components/atoms/MessageBox/MessageBox'
 
 interface IFormValues {
   name: string
@@ -28,7 +30,8 @@ const validationSchema = Yup.object({
 })
 
 export default function RegisterForm() {
-  const [register] = useRegisterMutation()
+  const [register, { isError }] = useRegisterMutation()
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleSubmit = async (values: IFormValues) => {
     if (values.password !== values.confirmPassword) {
@@ -36,7 +39,17 @@ export default function RegisterForm() {
     } else {
       try {
         const response = await register(values)
-        console.log('response:', response)
+
+        // Error response type guards
+        if ('error' in response) {
+          const { data }: any = response.error
+
+          if ('originalStatus' in response.error) {
+            setErrorMsg(`Request failed with status code ${response.error.originalStatus}.`)
+          } else if ('status' in response.error) {
+            setErrorMsg(`Request failed with status code ${response.error.status}. ${data.message}`)
+          }
+        }
       } catch {}
     }
   }
@@ -44,6 +57,8 @@ export default function RegisterForm() {
     <>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         <Form className="space-y-6">
+          {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
+
           <TextInput label="Name" name="name" type="text" placeholder="Enter name" />
 
           <TextInput label="Email Address" name="email" type="email" placeholder="Enter email" />
