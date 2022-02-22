@@ -1,3 +1,4 @@
+import { useRegisterMutation } from 'app/api/userApi'
 import Button from 'components/atoms/Button/Button'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
@@ -27,11 +28,16 @@ const validationSchema = Yup.object({
 })
 
 export default function RegisterForm() {
+  const [register] = useRegisterMutation()
+
   const handleSubmit = async (values: IFormValues) => {
     if (values.password !== values.confirmPassword) {
       alert('Password and confirm password are not match')
     } else {
-      console.log('values:', values)
+      try {
+        const response = await register(values)
+        console.log('response:', response)
+      } catch {}
     }
   }
   return (
