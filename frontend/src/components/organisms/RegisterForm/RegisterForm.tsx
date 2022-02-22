@@ -5,6 +5,7 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { useState } from 'react'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
+import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 
 interface IFormValues {
   name: string
@@ -30,7 +31,7 @@ const validationSchema = Yup.object({
 })
 
 export default function RegisterForm() {
-  const [register, { isError }] = useRegisterMutation()
+  const [register, { isLoading, isError }] = useRegisterMutation()
   const [errorMsg, setErrorMsg] = useState('')
 
   const handleSubmit = async (values: IFormValues) => {
@@ -53,10 +54,12 @@ export default function RegisterForm() {
       } catch {}
     }
   }
+
   return (
     <>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         <Form className="space-y-6">
+          {isLoading && <LoadingBox />}
           {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
 
           <TextInput label="Name" name="name" type="text" placeholder="Enter name" />
