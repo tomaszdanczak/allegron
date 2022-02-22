@@ -7,10 +7,19 @@ type Props = {
 }
 
 let shippingInfoFromLocalStorage = {} as IShippingInfo
+
 try {
   shippingInfoFromLocalStorage = localStorage.getItem('shippingInfo')
     ? JSON.parse(localStorage.getItem('shippingInfo') as string)
-    : ({} as IShippingInfo)
+    : ({
+        firstName: '',
+        lastName: '',
+        address: '',
+        city: '',
+        country: '',
+        postalcode: '',
+        phone: '',
+      } as IShippingInfo)
 } catch {}
 
 const ShippingInfoContext = React.createContext({ shippingInfo: {} as IShippingInfo, setShippingInfo: (shippingInfo: IShippingInfo) => {} })

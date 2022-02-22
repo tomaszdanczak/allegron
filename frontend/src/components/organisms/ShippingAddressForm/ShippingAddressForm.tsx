@@ -6,16 +6,6 @@ import { IShippingInfo } from 'types/shippingInfo'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
 
-const initialValues: IShippingInfo = {
-  firstName: '',
-  lastName: '',
-  address: '',
-  city: '',
-  country: '',
-  postalcode: '',
-  phone: '',
-}
-
 const validationSchema = Yup.object({
   firstName: Yup.string().required('Name is required'),
   lastName: Yup.string().required('Last name is required'),
@@ -27,7 +17,11 @@ const validationSchema = Yup.object({
 })
 
 export default function ShippingAddressForm() {
-  const { setShippingInfo } = useShippingInfo()
+  const { setShippingInfo, shippingInfo } = useShippingInfo()
+
+  if (shippingInfo) {
+    console.log('shippingInfo:', shippingInfo)
+  }
 
   const handleSubmit = (values: IShippingInfo) => {
     setShippingInfo(values)
@@ -35,7 +29,7 @@ export default function ShippingAddressForm() {
   }
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+    <Formik initialValues={shippingInfo} validationSchema={validationSchema} onSubmit={handleSubmit}>
       <Form>
         <div className="bg-gray-50">
           <div className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
