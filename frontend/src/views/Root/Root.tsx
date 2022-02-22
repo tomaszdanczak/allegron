@@ -5,6 +5,7 @@ import HomeScreen from 'views/HomeScreen/HomeScreen'
 import RegisterScreen from 'views/RegisterScreen/RegisterScreen'
 import SigninScreen from 'views/SigninScreen/SigninScreen'
 import ProductScreen from 'views/ProductScreen/ProductScreen'
+import ShippingAddressScreen from 'views/ShippingAddressScreen/ShippingAddressScreen'
 
 function Root() {
   return (
@@ -16,6 +17,7 @@ function Root() {
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/signin" element={<SigninScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/shipping" element={<ShippingAddressScreen />} />
       </Routes>
     </MainTemplate>
   )
