@@ -1,4 +1,5 @@
 import RegisterScreenHeader from 'components/molecules/RegisterScreenHeader/RegisterScreenHeader'
+import RegisterForm from 'components/organisms/RegisterForm/RegisterForm'
 
 export default function RegisterScreen() {
   return (
@@ -8,7 +9,9 @@ export default function RegisterScreen() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">RegisterForm</div>
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <RegisterForm />
+        </div>
       </div>
     </div>
   )
