@@ -2,6 +2,7 @@ const User = require("../db/models/user-model");
 const bcrypt = require("bcryptjs");
 const users = require("../data/users");
 const generateToken = require("../helpers");
+const bcryptjs = require("bcryptjs");
 
 class UserController {
   async seed(req, res) {
@@ -25,6 +26,24 @@ class UserController {
       }
     }
     res.status(401).send({ message: "Invalid email or password" });
+  }
+
+  async register(req, res) {
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: bcryptjs.hashSync(req.body.password, 8),
+    });
+
+    const createdUser = await newUser.save();
+
+    res.send({
+      _id: createdUser._id,
+      name: createdUser.name,
+      email: createdUser.email,
+      isAdmin: createdUser.isAdmin,
+      token: generateToken(createdUser),
+    });
   }
 }
 
