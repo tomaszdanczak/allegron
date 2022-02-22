@@ -1,4 +1,5 @@
 import { selectCurrentUser } from 'app/authSlice'
+import CheckoutSteps from 'components/molecules/CheckoutSteps/CheckoutSteps'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -13,5 +14,9 @@ export default function ShippingAddressScreen() {
     }
   }, [userInfo, navigate])
 
-  return <div>ShippingAddressScreen</div>
+  return (
+    <div>
+      <CheckoutSteps currentStep={2} /> ShippingAddressScreen
+    </div>
+  )
 }
