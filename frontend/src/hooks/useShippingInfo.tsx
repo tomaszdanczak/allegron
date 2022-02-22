@@ -6,10 +6,17 @@ type Props = {
   children: ReactNode
 }
 
+let shippingInfoFromLocalStorage = {} as IShippingInfo
+try {
+  shippingInfoFromLocalStorage = localStorage.getItem('shippingInfo')
+    ? JSON.parse(localStorage.getItem('shippingInfo') as string)
+    : ({} as IShippingInfo)
+} catch {}
+
 const ShippingInfoContext = React.createContext({ shippingInfo: {} as IShippingInfo, setShippingInfo: (shippingInfo: IShippingInfo) => {} })
 
 export const ShippingInfoProvider = ({ children }: Props) => {
-  const [shippingInfo, setShippingInfo] = useState({} as IShippingInfo)
+  const [shippingInfo, setShippingInfo] = useState(shippingInfoFromLocalStorage)
 
   return <ShippingInfoContext.Provider value={{ shippingInfo, setShippingInfo }}>{children}</ShippingInfoContext.Provider>
 }
