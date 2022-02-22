@@ -63,9 +63,9 @@ export default function SigninForm() {
           {isLoading && <LoadingBox />}
           {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
 
-          <TextInput label="Email Address" name="email" type="email" placeholder="Type your email" />
+          <TextInput label="Email Address" name="email" type="email" placeholder="Enter email" />
 
-          <TextInput label="Password" name="password" type="password" />
+          <TextInput label="Password" name="password" type="password" placeholder="Enter password" />
 
           <RememberMe link="register" />
 

@@ -78,9 +78,9 @@ export default function RegisterForm() {
 
           <TextInput label="Email Address" name="email" type="email" placeholder="Enter email" />
 
-          <TextInput label="Password" name="password" type="password" placeholder="password" />
+          <TextInput label="Password" name="password" type="password" placeholder="Enter password" />
 
-          <TextInput label="Confirm Password" name="confirmPassword" type="password" placeholder="password" />
+          <TextInput label="Confirm Password" name="confirmPassword" type="password" placeholder="Confirm password" />
 
           <RememberMe link="signin" />
 
