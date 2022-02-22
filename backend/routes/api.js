@@ -15,5 +15,6 @@ router.get(
 // ======================  USERS  ================================
 router.get("/api/users/seed", expressAsyncHandler(UserController.seed));
 router.post("/api/users/signin", expressAsyncHandler(UserController.signin));
+router.post("/api/users/register", expressAsyncHandler(UserController.register));
 
 module.exports = router;

@@ -22,7 +22,7 @@ const initialValues: IFormValues = {
 }
 
 const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email address').required('Email is equired'),
+  email: Yup.string().email('Invalid email address').required('Email is required'),
   password: Yup.string().required('Password is required'),
 })
 
@@ -63,11 +63,11 @@ export default function SigninForm() {
           {isLoading && <LoadingBox />}
           {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
 
-          <TextInput label="Email Address" name="email" type="email" placeholder="Type your email" />
+          <TextInput label="Email Address" name="email" type="email" placeholder="Enter email" />
 
-          <TextInput label="Password" name="password" type="password" />
+          <TextInput label="Password" name="password" type="password" placeholder="Enter password" />
 
-          <RememberMe />
+          <RememberMe link="register" />
 
           <Button text="Sign In" type="submit" variant="small" />
 
