@@ -8,6 +8,7 @@ import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from 'app/authSlice'
+import RememberMe from '../../atoms/RememberMe/RememberMe'
 
 interface IFormValues {
   name: string
@@ -80,6 +81,8 @@ export default function RegisterForm() {
           <TextInput label="Password" name="password" type="password" placeholder="password" />
 
           <TextInput label="Confirm Password" name="confirmPassword" type="password" placeholder="password" />
+
+          <RememberMe link="signin" />
 
           <Button text="Register" type="submit" variant="small" />
         </Form>

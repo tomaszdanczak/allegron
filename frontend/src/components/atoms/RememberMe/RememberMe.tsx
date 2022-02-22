@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 
-export default function RememberMe() {
+interface IProps {
+  link: 'signin' | 'register'
+}
+
+export default function RememberMe({ link }: IProps) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center">
@@ -16,8 +20,11 @@ export default function RememberMe() {
       </div>
 
       <div className="text-sm">
-        <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
-          Create your account
+        {link === 'signin' && 'Already registred? '}
+
+        <Link to={`/${link}`} className="font-medium text-indigo-600 hover:text-indigo-500">
+          {link === 'register' && 'Create your account'}
+          {link === 'signin' && 'Sign In'}
         </Link>
       </div>
     </div>

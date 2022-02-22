@@ -67,7 +67,7 @@ export default function SigninForm() {
 
           <TextInput label="Password" name="password" type="password" />
 
-          <RememberMe />
+          <RememberMe link="register" />
 
           <Button text="Sign In" type="submit" variant="small" />
 
