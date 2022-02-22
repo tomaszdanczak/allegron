@@ -1,12 +1,10 @@
 import OrderSummaryItem from 'components/molecules/OrderSummaryItem/OrderSummaryItem'
 import { useCart } from 'hooks/useCart'
+
 import { useNavigate } from 'react-router-dom'
 
 export default function OrderSummaryWithProducts() {
   const { cartItems } = useCart()
-
-  console.log('cartItems:', cartItems)
-
   const navigate = useNavigate()
 
   const handleClickConfirmOrder = () => {
