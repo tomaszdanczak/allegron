@@ -3,14 +3,11 @@ import { displaySelectedCurrency } from 'helpers'
 import { useCart } from 'hooks/useCart'
 import { useCurrency } from 'hooks/useCurrency'
 
-import { useNavigate } from 'react-router-dom'
 import { IPrice } from 'types/product'
 
 export default function OrderSummaryWithProducts() {
   const { cartItems } = useCart()
   const { currency } = useCurrency()
-
-  const navigate = useNavigate()
 
   const getPriceInSelectedCurrency = (prices: IPrice[]): number => {
     const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
@@ -28,9 +25,6 @@ export default function OrderSummaryWithProducts() {
 
   const totalPrice = subtotalPrice + shippingPrice + roundedTaxPrice
 
-  const handleClickConfirmOrder = () => {
-    navigate('/payment')
-  }
   return (
     <div className="mt-10 lg:mt-0">
       <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
@@ -70,7 +64,6 @@ export default function OrderSummaryWithProducts() {
 
         <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
           <button
-            onClick={handleClickConfirmOrder}
             type="submit"
             className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
           >

@@ -1,20 +1,12 @@
 import SelectBox from 'components/molecules/SelectBox/SelectBox'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
+import { useShippingInfo } from 'hooks/useShippingInfo'
+import { IShippingInfo } from 'types/shippingInfo'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
 
-interface IFormValues {
-  firstName: string
-  lastName: string
-  address: string
-  city: string
-  country: string
-  postalcode: string
-  phone: string
-}
-
-const initialValues: IFormValues = {
+const initialValues: IShippingInfo = {
   firstName: '',
   lastName: '',
   address: '',
@@ -35,9 +27,13 @@ const validationSchema = Yup.object({
 })
 
 export default function ShippingAddressForm() {
-  const handleSubmit = (values: IFormValues) => {
+  const { setShippingInfo } = useShippingInfo()
+
+  const handleSubmit = (values: IShippingInfo) => {
     console.log('values:', values)
+    setShippingInfo(values)
   }
+
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       <Form>
@@ -61,7 +57,9 @@ export default function ShippingAddressForm() {
                   <TextInput label="City" name="city" type="text" placeholder="Enter city" />
 
                   <SelectBox label="Country" name="country">
-                    <option value="Poland">Poland</option>
+                    <option defaultValue="selected" value="Poland">
+                      Poland
+                    </option>
                     <option value="Germany">Germany</option>
                     <option value="United Kingdom">United Kingdom</option>
                   </SelectBox>
@@ -71,8 +69,6 @@ export default function ShippingAddressForm() {
                     <TextInput label="Phone" name="phone" type="text" placeholder="Enter phone" />
                   </div>
                 </div>
-
-                <button type="submit">Click</button>
               </div>
 
               <OrderSummaryWithProducts />
