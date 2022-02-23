@@ -4,10 +4,13 @@ import { useEffect } from 'react'
 import { useShippingInfo } from 'hooks/useShippingInfo'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'hooks/useCart'
+import { useSelector } from 'react-redux'
+import { selectCurrentUser } from 'app/authSlice'
 
 export default function PaymentMethodScreen() {
   const { shippingInfo } = useShippingInfo()
   const { cartItems } = useCart()
+  const userInfo = useSelector(selectCurrentUser)
 
   const navigate = useNavigate()
 
@@ -19,7 +22,11 @@ export default function PaymentMethodScreen() {
     if (cartItems.length === 0) {
       navigate('/cart')
     }
-  }, [shippingInfo, cartItems, navigate])
+
+    if (!userInfo.name) {
+      navigate('/signin')
+    }
+  }, [shippingInfo, cartItems, userInfo, navigate])
 
   return (
     <div>
