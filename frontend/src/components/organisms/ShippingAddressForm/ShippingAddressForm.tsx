@@ -2,6 +2,7 @@ import SelectBox from 'components/molecules/SelectBox/SelectBox'
 import TextInput from 'components/molecules/TextInput/TextInput'
 import { Formik, Form } from 'formik'
 import { useShippingInfo } from 'hooks/useShippingInfo'
+import { useNavigate } from 'react-router-dom'
 import { IShippingInfo } from 'types/shippingInfo'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
@@ -18,14 +19,12 @@ const validationSchema = Yup.object({
 
 export default function ShippingAddressForm() {
   const { setShippingInfo, shippingInfo } = useShippingInfo()
-
-  if (shippingInfo) {
-    console.log('shippingInfo:', shippingInfo)
-  }
+  const navigate = useNavigate()
 
   const handleSubmit = (values: IShippingInfo) => {
     setShippingInfo(values)
     localStorage.setItem('shippingInfo', JSON.stringify(values))
+    navigate('/payment')
   }
 
   return (
