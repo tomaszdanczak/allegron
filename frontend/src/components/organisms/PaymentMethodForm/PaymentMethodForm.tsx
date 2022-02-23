@@ -4,6 +4,7 @@ import { Formik, Form, ErrorMessage } from 'formik'
 import { usePaymentMethod } from 'hooks/usePaymentMethod'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
+import { useNavigate } from 'react-router-dom'
 
 const validationSchema = Yup.object({
   paymentType: Yup.string().required('Select payment method'),
@@ -14,10 +15,12 @@ interface IFormValues {
 
 export default function PaymentMethodForm() {
   const { setPaymentMethod, paymentMethod } = usePaymentMethod()
+  const navigate = useNavigate()
 
   const handleSubmit = (values: IFormValues) => {
     setPaymentMethod(values.paymentType)
     localStorage.setItem('paymentMethod', values.paymentType)
+    navigate('/placeorder')
   }
 
   return (

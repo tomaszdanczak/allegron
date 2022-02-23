@@ -7,6 +7,7 @@ import SigninScreen from 'views/SigninScreen/SigninScreen'
 import ProductScreen from 'views/ProductScreen/ProductScreen'
 import ShippingAddressScreen from 'views/ShippingAddressScreen/ShippingAddressScreen'
 import PaymentMethodScreen from 'views/PaymentMethodScreen/PaymentMethodScreen'
+import PlaceOrderScreen from 'views/PlaceOrderScreen/PlaceOrderScreen'
 
 function Root() {
   return (
@@ -20,6 +21,7 @@ function Root() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/shipping" element={<ShippingAddressScreen />} />
         <Route path="/payment" element={<PaymentMethodScreen />} />
+        <Route path="/placeorder" element={<PlaceOrderScreen />} />
       </Routes>
     </MainTemplate>
   )
