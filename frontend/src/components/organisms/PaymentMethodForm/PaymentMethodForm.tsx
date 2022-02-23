@@ -1,5 +1,6 @@
+import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import RadioInput from 'components/molecules/RadioInput/RadioInput'
-import { Formik, Form } from 'formik'
+import { Formik, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
 
@@ -25,7 +26,9 @@ export default function PaymentMethodForm() {
 
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
               <div>
-                <h2 className="text-lg font-medium text-gray-900">Payment Method</h2>
+                <h2 className="mb-4 text-lg font-medium text-gray-900">Payment Method</h2>
+
+                <ErrorMessage name="paymentType">{(msg) => <MessageBox variant="error">{msg}</MessageBox>}</ErrorMessage>
 
                 <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                   <div className="mt-4">
