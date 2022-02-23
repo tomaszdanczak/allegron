@@ -8,17 +8,12 @@ import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWi
 const validationSchema = Yup.object({
   paymentType: Yup.string().required('Select payment method'),
 })
-
-const initialValues = {
-  paymentType: '',
-}
-
 interface IFormValues {
   paymentType: string
 }
 
 export default function PaymentMethodForm() {
-  const { setPaymentMethod } = usePaymentMethod()
+  const { setPaymentMethod, paymentMethod } = usePaymentMethod()
 
   const handleSubmit = (values: IFormValues) => {
     setPaymentMethod(values.paymentType)
@@ -26,7 +21,7 @@ export default function PaymentMethodForm() {
   }
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+    <Formik initialValues={{ paymentType: paymentMethod }} validationSchema={validationSchema} onSubmit={handleSubmit}>
       <Form>
         <div className="bg-gray-50">
           <div className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
