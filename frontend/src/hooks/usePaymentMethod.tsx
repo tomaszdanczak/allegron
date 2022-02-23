@@ -5,10 +5,16 @@ type Props = {
   children: ReactNode
 }
 
+let paymentMethodFromLocalStorage = ''
+
+try {
+  paymentMethodFromLocalStorage = localStorage.getItem('paymentMethod') ? (localStorage.getItem('paymentMethod') as string) : ''
+} catch {}
+
 const PaymentMethodContext = React.createContext({ paymentMethod: '', setPaymentMethod: (paymentMethod: string) => {} })
 
 export const PaymentMethodProvider = ({ children }: Props) => {
-  const [paymentMethod, setPaymentMethod] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState(paymentMethodFromLocalStorage)
 
   return <PaymentMethodContext.Provider value={{ paymentMethod, setPaymentMethod }}>{children}</PaymentMethodContext.Provider>
 }
