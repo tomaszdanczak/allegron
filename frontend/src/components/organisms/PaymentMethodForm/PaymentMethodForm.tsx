@@ -1,5 +1,5 @@
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
-import RadioInput from 'components/molecules/RadioInput/RadioInput'
+import PaymentMethodInput from 'components/molecules/PaymentMethodInput/PaymentMethodInput'
 import { Formik, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
@@ -30,15 +30,13 @@ export default function PaymentMethodForm() {
 
                 <ErrorMessage name="paymentType">{(msg) => <MessageBox variant="error">{msg}</MessageBox>}</ErrorMessage>
 
-                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  <div className="mt-4">
-                    <legend className="sr-only">Payment type</legend>
+                <div className="mt-8">
+                  <legend className="sr-only">Payment type</legend>
 
-                    <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                      <RadioInput type="radio" name="paymentType" value="paypal" label="PayPal" />
+                  <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                    <PaymentMethodInput type="radio" name="paymentType" value="paypal" label="PayPal" />
 
-                      <RadioInput type="radio" name="paymentType" value="stripe" label="Stripe" />
-                    </div>
+                    <PaymentMethodInput type="radio" name="paymentType" value="stripe" label="Stripe" />
                   </div>
                 </div>
               </div>
