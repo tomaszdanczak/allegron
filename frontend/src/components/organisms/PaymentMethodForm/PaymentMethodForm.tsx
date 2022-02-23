@@ -22,6 +22,7 @@ export default function PaymentMethodForm() {
 
   const handleSubmit = (values: IFormValues) => {
     setPaymentMethod(values.paymentType)
+    localStorage.setItem('paymentMethod', values.paymentType)
   }
 
   return (
