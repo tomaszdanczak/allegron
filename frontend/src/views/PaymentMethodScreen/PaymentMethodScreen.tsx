@@ -3,16 +3,23 @@ import PaymentMethodForm from 'components/organisms/PaymentMethodForm/PaymentMet
 import { useEffect } from 'react'
 import { useShippingInfo } from 'hooks/useShippingInfo'
 import { useNavigate } from 'react-router-dom'
+import { useCart } from 'hooks/useCart'
 
 export default function PaymentMethodScreen() {
   const { shippingInfo } = useShippingInfo()
+  const { cartItems } = useCart()
+
   const navigate = useNavigate()
 
   useEffect(() => {
     if (shippingInfo.address === '') {
       navigate('/shipping')
     }
-  }, [shippingInfo, navigate])
+
+    if (cartItems.length === 0) {
+      navigate('/cart')
+    }
+  }, [shippingInfo, cartItems, navigate])
 
   return (
     <div>
