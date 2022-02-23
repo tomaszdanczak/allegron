@@ -1,6 +1,7 @@
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import PaymentMethodInput from 'components/molecules/PaymentMethodInput/PaymentMethodInput'
 import { Formik, Form, ErrorMessage } from 'formik'
+import { usePaymentMethod } from 'hooks/usePaymentMethod'
 import * as Yup from 'yup'
 import OrderSummaryWithProducts from '../OrderSummaryWithProducts/OrderSummaryWithProducts'
 
@@ -12,9 +13,15 @@ const initialValues = {
   paymentType: '',
 }
 
+interface IFormValues {
+  paymentType: string
+}
+
 export default function PaymentMethodForm() {
-  const handleSubmit = (values: any) => {
-    console.log('values:', values)
+  const { setPaymentMethod } = usePaymentMethod()
+
+  const handleSubmit = (values: IFormValues) => {
+    setPaymentMethod(values.paymentType)
   }
 
   return (
