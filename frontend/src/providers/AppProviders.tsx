@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { CurrencyProvider } from 'hooks/useCurrency'
 import { CartProvider } from 'hooks/useCart'
 import { ShippingInfoProvider } from 'hooks/useShippingInfo'
+import { PaymentMethodProvider } from 'hooks/usePaymentMethod'
 
 type Props = {
   children: ReactNode
@@ -18,7 +19,9 @@ const AppProviders = ({ children }: Props) => {
         <HamburgerProvider>
           <CurrencyProvider>
             <ShippingInfoProvider>
-              <CartProvider>{children}</CartProvider>
+              <PaymentMethodProvider>
+                <CartProvider>{children}</CartProvider>
+              </PaymentMethodProvider>
             </ShippingInfoProvider>
           </CurrencyProvider>
         </HamburgerProvider>
