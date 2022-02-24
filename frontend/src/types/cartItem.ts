@@ -8,4 +8,5 @@ export interface ICartItem {
   quantity: number
   countInStock: number
   deliveryInfo: IDeliveryInfo
+  description: string
 }

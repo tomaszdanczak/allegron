@@ -24,6 +24,7 @@ export default function ProductScreen() {
   const { addToCart } = useCart()
 
   const { data: product = {} as IProduct, isLoading, isError, error = {} } = useGetProductQuery(productId)
+  console.log('product:', product)
 
   const { name, prices = [] } = product
   const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
@@ -48,6 +49,7 @@ export default function ProductScreen() {
       countInStock: product.countInStock,
       quantity,
       deliveryInfo: product.deliveryInfo,
+      description: product.description[0],
     }
 
     navigate('/cart')
