@@ -5,17 +5,19 @@ import { useCurrency } from 'hooks/useCurrency'
 import { usePrices } from 'hooks/usePrices'
 import { useShippingInfo } from 'hooks/useShippingInfo'
 import { usePaymentMethod } from 'hooks/usePaymentMethod'
+import { useState } from 'react'
+import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
+import MessageBox from 'components/atoms/MessageBox/MessageBox'
 
 export default function OrderInformation() {
+  const [errorMsg, setErrorMsg] = useState('')
   const { totalPrice, shippingPrice, roundedTaxPrice, subtotalPrice, currentCurrency } = usePrices()
   const { cartItems } = useCart()
   const { shippingInfo } = useShippingInfo()
   const { firstName, lastName, address, city, country } = shippingInfo
   const { currency } = useCurrency()
   const { paymentMethod } = usePaymentMethod()
-
-  const [saveOrder, { isError }] = useSaveOrderMutation()
-  console.log('isError:', isError)
+  const [saveOrder, { isError, isLoading }] = useSaveOrderMutation()
 
   const handlePlaceOrder = async () => {
     const orderedItems = cartItems.map(({ name, quantity, image, description, _id, prices }) => {
@@ -48,14 +50,27 @@ export default function OrderInformation() {
 
     const createdOrder = { orderedItems, shippingAddress, paymentMethod, orderPrices }
 
-    const response = await saveOrder(createdOrder)
+    try {
+      const response = await saveOrder(createdOrder)
 
-    console.log('response:', response)
+      // Error response type guards
+      if ('error' in response) {
+        const { data }: any = response.error
+
+        if ('originalStatus' in response.error) {
+          setErrorMsg(`Request failed with status code ${response.error.originalStatus}.`)
+        } else if ('status' in response.error) {
+          setErrorMsg(`Request failed with status code ${response.error.status}. ${data.message}`)
+        }
+      }
+    } catch {}
   }
 
   return (
     <div className="mt-10">
       <h2 className="sr-only">Billing Summary</h2>
+      {isLoading && <LoadingBox />}
+      {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
 
       <div className="rounded-lg bg-gray-50 py-6 px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-0 lg:py-8">
         <dl className="text-sm sm:grid-cols-2 md:gap-x-8 lg:col-span-5 lg:pl-8">
