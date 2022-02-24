@@ -8,6 +8,7 @@ import { usePaymentMethod } from 'hooks/usePaymentMethod'
 import { useState } from 'react'
 import LoadingBox from 'components/atoms/LoadingBox/LoadingBox'
 import MessageBox from 'components/atoms/MessageBox/MessageBox'
+import { useNavigate } from 'react-router-dom'
 
 export default function OrderInformation() {
   const [errorMsg, setErrorMsg] = useState('')
@@ -18,6 +19,8 @@ export default function OrderInformation() {
   const { currency } = useCurrency()
   const { paymentMethod } = usePaymentMethod()
   const [saveOrder, { isError, isLoading }] = useSaveOrderMutation()
+  const { removeAllItemsFromCart } = useCart()
+  const navigate = useNavigate()
 
   const handlePlaceOrder = async () => {
     const orderedItems = cartItems.map(({ name, quantity, image, description, _id, prices }) => {
@@ -62,6 +65,14 @@ export default function OrderInformation() {
         } else if ('status' in response.error) {
           setErrorMsg(`Request failed with status code ${response.error.status}. ${data.message}`)
         }
+      }
+
+      // Success Response (order created)
+      if ('data' in response) {
+        removeAllItemsFromCart()
+        localStorage.removeItem('cartItems')
+        const _id = response.data.order._id
+        navigate(`/order/${_id}`)
       }
     } catch {}
   }
