@@ -49,7 +49,7 @@ export default function OrderInformation() {
             <dd className="font-medium text-indigo-600">{`${currentCurrency}${totalPrice}`}</dd>
           </div>
           <div className="mt-8">
-            <Button variant="big" text="Order" />
+            <Button variant="big" text="Place Order" />
           </div>
         </dl>
       </div>
