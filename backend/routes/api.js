@@ -3,6 +3,7 @@ const expressAsyncHandler = require("express-async-handler");
 const router = new express.Router();
 const ProductController = require("../controllers/product-controller.js");
 const UserController = require("../controllers/user-controller.js");
+const OrderController = require("../controllers/order-controller.js");
 
 // ======================  PRODUCTS  =============================
 router.get("/api/products/seed", expressAsyncHandler(ProductController.seed));
@@ -15,6 +16,12 @@ router.get(
 // ======================  USERS  ================================
 router.get("/api/users/seed", expressAsyncHandler(UserController.seed));
 router.post("/api/users/signin", expressAsyncHandler(UserController.signin));
-router.post("/api/users/register", expressAsyncHandler(UserController.register));
+router.post(
+  "/api/users/register",
+  expressAsyncHandler(UserController.register)
+);
+
+// ======================  ORDERS  ================================
+router.post("/api/orders", expressAsyncHandler(OrderController.saveOrder));
 
 module.exports = router;
