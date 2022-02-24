@@ -1,10 +1,14 @@
 import Button from 'components/atoms/Button/Button'
 import { useCart } from 'hooks/useCart'
 import { usePrices } from 'hooks/usePrices'
+import { useShippingInfo } from 'hooks/useShippingInfo'
 
 export default function OrderInformation() {
   const { totalPrice, shippingPrice, roundedTaxPrice, subtotalPrice, currentCurrency } = usePrices()
   const { cartItems } = useCart()
+  const { shippingInfo } = useShippingInfo()
+  const { firstName, lastName, address, city, country } = shippingInfo
+  console.log('shippingInfo:', shippingInfo)
 
   return (
     <div className="mt-24">
@@ -15,9 +19,9 @@ export default function OrderInformation() {
           <div className="w-full ">
             <dt className="w-full font-medium text-gray-900">Billing address</dt>
             <dd className="mt-3 w-full text-gray-500">
-              <span className="block">Floyd Miles</span>
-              <span className="block">7363 Cynthia Pass</span>
-              <span className="block">Toronto, ON N3Y 4H8</span>
+              <span className="block">{`${firstName} ${lastName}`}</span>
+              <span className="block">{address}</span>
+              <span className="block">{`${city}, ${country}`}</span>
             </dd>
           </div>
         </dl>
