@@ -8,10 +8,9 @@ export default function OrderInformation() {
   const { cartItems } = useCart()
   const { shippingInfo } = useShippingInfo()
   const { firstName, lastName, address, city, country } = shippingInfo
-  console.log('shippingInfo:', shippingInfo)
 
   return (
-    <div className="mt-24">
+    <div className="mt-10">
       <h2 className="sr-only">Billing Summary</h2>
 
       <div className="rounded-lg bg-gray-50 py-6 px-6 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-0 lg:py-8">
