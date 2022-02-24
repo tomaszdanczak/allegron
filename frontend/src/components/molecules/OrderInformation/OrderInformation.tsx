@@ -1,13 +1,57 @@
+import { useSaveOrderMutation } from 'app/api/ordersApi'
 import Button from 'components/atoms/Button/Button'
 import { useCart } from 'hooks/useCart'
+import { useCurrency } from 'hooks/useCurrency'
 import { usePrices } from 'hooks/usePrices'
 import { useShippingInfo } from 'hooks/useShippingInfo'
+import { usePaymentMethod } from 'hooks/usePaymentMethod'
 
 export default function OrderInformation() {
   const { totalPrice, shippingPrice, roundedTaxPrice, subtotalPrice, currentCurrency } = usePrices()
   const { cartItems } = useCart()
   const { shippingInfo } = useShippingInfo()
   const { firstName, lastName, address, city, country } = shippingInfo
+  const { currency } = useCurrency()
+  const { paymentMethod } = usePaymentMethod()
+
+  const [saveOrder, { isError }] = useSaveOrderMutation()
+  console.log('isError:', isError)
+
+  const handlePlaceOrder = async () => {
+    const orderedItems = cartItems.map(({ name, quantity, image, description, _id, prices }) => {
+      const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
+
+      return {
+        name,
+        quantity,
+        image: { imageSrc: image.imageSrc, imageAlt: image.imageAlt },
+        price: `$${priceInfo.price}`,
+        description: description[0],
+        product: _id,
+      }
+    })
+
+    const shippingAddress = {
+      firstName: shippingInfo.firstName,
+      lastName: shippingInfo.lastName,
+      address: shippingInfo.address,
+      city: shippingInfo.city,
+      country: shippingInfo.country,
+    }
+
+    const orderPrices = {
+      itemsPrice: subtotalPrice,
+      shippingPrice,
+      taxPrice: roundedTaxPrice,
+      totalPrice,
+    }
+
+    const createdOrder = { orderedItems, shippingAddress, paymentMethod, orderPrices }
+
+    const response = await saveOrder(createdOrder)
+
+    console.log('response:', response)
+  }
 
   return (
     <div className="mt-10">
@@ -49,7 +93,7 @@ export default function OrderInformation() {
             <dd className="font-medium text-indigo-600">{`${currentCurrency}${totalPrice}`}</dd>
           </div>
           <div className="mt-8">
-            <Button variant="big" text="Place Order" />
+            <Button variant="big" text="Place Order" onClick={handlePlaceOrder} />
           </div>
         </dl>
       </div>

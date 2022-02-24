@@ -15,7 +15,7 @@ const pricesSchema = new Schema({
 
 const orderSchema = new Schema(
   {
-    orderItems: [
+    orderedItems: [
       {
         name: { type: String, required: true },
         quantity: { type: Number, required: true },
@@ -37,7 +37,7 @@ const orderSchema = new Schema(
       country: { type: String, required: true },
     },
     paymentMethod: { type: String, required: true },
-    prices: { type: pricesSchema, required: true },
+    orderPrices: { type: pricesSchema, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },

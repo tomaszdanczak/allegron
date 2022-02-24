@@ -2,14 +2,14 @@ const Order = require("../db/models/order-model");
 
 class OrderController {
   async saveOrder(req, res) {
-    if (req.body.orderItems.length === 0) {
+    if (req.body.orderedItems.length === 0) {
       res.status(400).send({ message: "Cart is empty" });
     } else {
       const order = new Order({
-        orderItems: req.body.orderItems,
+        orderedItems: req.body.orderedItems,
         shippingAddress: req.body.shippingAddress,
         paymentMethod: req.body.paymentMethod,
-        prices: req.body.prices,
+        orderPrices: req.body.orderPrices,
         user: req.user._id,
       });
 
