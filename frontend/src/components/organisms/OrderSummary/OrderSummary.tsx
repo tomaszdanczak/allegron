@@ -1,32 +1,13 @@
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
-
 import Button from 'components/atoms/Button/Button'
-import { displaySelectedCurrency } from 'helpers'
 import { useCart } from 'hooks/useCart'
-import { useCurrency } from 'hooks/useCurrency'
+import { usePrices } from 'hooks/usePrices'
 import { useNavigate } from 'react-router-dom'
-import { IPrice } from 'types/product'
 
 export default function OrderSummary() {
   const navigate = useNavigate()
   const { cartItems } = useCart()
-  const { currency } = useCurrency()
-
-  const getPriceInSelectedCurrency = (prices: IPrice[]): number => {
-    const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
-
-    return priceInfo.price
-  }
-
-  const subtotalPrice = cartItems.reduce((a, c) => a + c.quantity * getPriceInSelectedCurrency(c.prices), 0)
-
-  const taxPrice = cartItems.length > 0 ? subtotalPrice * 0.23 : 0
-
-  const roundedTaxPrice = Math.round(taxPrice * 100) / 100
-
-  const shippingPrice = cartItems.length === 0 ? 0 : subtotalPrice > 100 ? 0 : 5
-
-  const totalPrice = subtotalPrice + shippingPrice + roundedTaxPrice
+  const { totalPrice, shippingPrice, roundedTaxPrice, subtotalPrice, currentCurrency } = usePrices()
 
   const handleCheckoutButtonClick = () => {
     navigate('/shipping')
@@ -41,7 +22,7 @@ export default function OrderSummary() {
       <dl className="mt-6 mb-8 space-y-4">
         <div className="flex items-center justify-between">
           <dt className="text-sm text-gray-600">Subtotal</dt>
-          <dd className="text-sm font-medium text-gray-900">{`${displaySelectedCurrency(currency)}${subtotalPrice}`}</dd>
+          <dd className="text-sm font-medium text-gray-900">{`${currentCurrency}${subtotalPrice}`}</dd>
         </div>
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
@@ -56,7 +37,7 @@ export default function OrderSummary() {
             {shippingPrice === 0 && cartItems.length > 0 ? (
               <span className="text-green-500">Free delivery</span>
             ) : (
-              `${displaySelectedCurrency(currency)}${shippingPrice}`
+              `${currentCurrency}${shippingPrice}`
             )}
           </dd>
         </div>
@@ -69,12 +50,12 @@ export default function OrderSummary() {
               <QuestionMarkCircleIcon className="h-5 w-5" aria-hidden="true" />
             </button>
           </dt>
-          <dd className="text-sm font-medium text-gray-900">{`${displaySelectedCurrency(currency)}${roundedTaxPrice}`}</dd>
+          <dd className="text-sm font-medium text-gray-900">{`${currentCurrency}${roundedTaxPrice}`}</dd>
         </div>
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
           <dt className="text-base font-medium text-gray-900">Order total</dt>
-          <dd className="text-base font-medium text-gray-900">{`${displaySelectedCurrency(currency)}${totalPrice}`}</dd>
+          <dd className="text-base font-medium text-gray-900">{`${currentCurrency}${totalPrice}`}</dd>
         </div>
       </dl>
 

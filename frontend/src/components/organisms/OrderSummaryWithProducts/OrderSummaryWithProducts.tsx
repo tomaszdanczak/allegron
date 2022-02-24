@@ -1,29 +1,11 @@
 import OrderSummaryItem from 'components/molecules/OrderSummaryItem/OrderSummaryItem'
-import { displaySelectedCurrency } from 'helpers'
 import { useCart } from 'hooks/useCart'
-import { useCurrency } from 'hooks/useCurrency'
-
-import { IPrice } from 'types/product'
+import { usePrices } from 'hooks/usePrices'
 
 export default function OrderSummaryWithProducts() {
   const { cartItems } = useCart()
-  const { currency } = useCurrency()
 
-  const getPriceInSelectedCurrency = (prices: IPrice[]): number => {
-    const priceInfo = prices.find((price) => price.currency === currency) || prices[0]
-
-    return priceInfo.price
-  }
-  //TODO: needs to be refactored using hooks (keep values in useCart)
-  const subtotalPrice = cartItems.reduce((a, c) => a + c.quantity * getPriceInSelectedCurrency(c.prices), 0)
-
-  const taxPrice = cartItems.length > 0 ? subtotalPrice * 0.23 : 0
-
-  const roundedTaxPrice = Math.round(taxPrice * 100) / 100
-
-  const shippingPrice = cartItems.length === 0 ? 0 : subtotalPrice > 100 ? 0 : 5
-
-  const totalPrice = subtotalPrice + shippingPrice + roundedTaxPrice
+  const { totalPrice, shippingPrice, roundedTaxPrice, subtotalPrice, currentCurrency } = usePrices()
 
   return (
     <div className="mt-10 lg:mt-0">
@@ -40,7 +22,7 @@ export default function OrderSummaryWithProducts() {
         <dl className="space-y-6 border-t border-gray-200 py-6 px-4 sm:px-6">
           <div className="flex items-center justify-between">
             <dt className="text-sm">Subtotal</dt>
-            <dd className="text-sm font-medium text-gray-900">{`${displaySelectedCurrency(currency)}${subtotalPrice}`}</dd>
+            <dd className="text-sm font-medium text-gray-900">{`${currentCurrency}${subtotalPrice}`}</dd>
           </div>
           <div className="flex items-center justify-between">
             <dt className="text-sm">Shipping</dt>
@@ -48,17 +30,17 @@ export default function OrderSummaryWithProducts() {
               {shippingPrice === 0 && cartItems.length > 0 ? (
                 <span className="text-green-500">Free delivery</span>
               ) : (
-                `${displaySelectedCurrency(currency)}${shippingPrice}`
+                `${currentCurrency}${shippingPrice}`
               )}
             </dd>
           </div>
           <div className="flex items-center justify-between">
             <dt className="text-sm">Taxes</dt>
-            <dd className="text-sm font-medium text-gray-900">{`${displaySelectedCurrency(currency)}${roundedTaxPrice}`}</dd>
+            <dd className="text-sm font-medium text-gray-900">{`${currentCurrency}${roundedTaxPrice}`}</dd>
           </div>
           <div className="flex items-center justify-between border-t border-gray-200 pt-6">
             <dt className="text-base font-medium">Total</dt>
-            <dd className="text-base font-medium text-gray-900">{`${displaySelectedCurrency(currency)}${totalPrice}`}</dd>
+            <dd className="text-base font-medium text-gray-900">{`${currentCurrency}${totalPrice}`}</dd>
           </div>
         </dl>
 

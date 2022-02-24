@@ -9,8 +9,8 @@ export default function PlaceOrderScreen() {
       <div className="mx-auto max-w-3xl">
         <h1 className="mb-2 border-b border-gray-200 pb-3 text-3xl font-extrabold tracking-tight text-gray-900">Order Details</h1>
 
-        <OrderedProducts />
         <OrderInformation />
+        <OrderedProducts />
       </div>
     </div>
   )
