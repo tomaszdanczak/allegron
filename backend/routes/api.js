@@ -4,6 +4,7 @@ const router = new express.Router();
 const ProductController = require("../controllers/product-controller.js");
 const UserController = require("../controllers/user-controller.js");
 const OrderController = require("../controllers/order-controller.js");
+const isAuth = require("../middleware/is-auth-api-middleware.js");
 
 // ======================  PRODUCTS  =============================
 router.get("/api/products/seed", expressAsyncHandler(ProductController.seed));
@@ -22,6 +23,10 @@ router.post(
 );
 
 // ======================  ORDERS  ================================
-router.post("/api/orders", expressAsyncHandler(OrderController.saveOrder));
+router.post(
+  "/api/orders",
+  isAuth,
+  expressAsyncHandler(OrderController.saveOrder)
+);
 
 module.exports = router;
