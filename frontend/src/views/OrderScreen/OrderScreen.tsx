@@ -4,7 +4,7 @@ import MessageBox from 'components/atoms/MessageBox/MessageBox'
 import OrderedProductsFromDatabase from 'components/molecules/OrderedProductsFromDatabase/OrderedProductsFromDatabase'
 import OrderInformationFromBackend from 'components/molecules/OrderInformationFromBackend/OrderInformationFromBackend'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function OrderScreen() {
   const params = useParams()
@@ -26,7 +26,10 @@ export default function OrderScreen() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-2 border-b border-gray-200 pb-3 text-3xl font-extrabold tracking-tight text-gray-900">Order {data._id}</h1>
+      <h1 className="mb-6 border-b border-gray-200 pb-3 text-3xl font-extrabold tracking-tight text-gray-900">Order {data._id}</h1>
+      <Link to="/" className="ml-2 text-indigo-500 hover:text-indigo-600">
+        ← Go shopping
+      </Link>
       {isLoading && <LoadingBox />}
       {isError && <MessageBox variant="error">{`${errorMsg}`}</MessageBox>}
       {isSuccess && (
