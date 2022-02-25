@@ -31,7 +31,7 @@ export default function OrderInformation() {
         quantity,
         image: { imageSrc: image.imageSrc, imageAlt: image.imageAlt },
         price: `$${priceInfo.price}`,
-        description: description[0],
+        description,
         product: _id,
       }
     })
@@ -45,10 +45,10 @@ export default function OrderInformation() {
     }
 
     const orderPrices = {
-      itemsPrice: subtotalPrice,
-      shippingPrice,
-      taxPrice: roundedTaxPrice,
-      totalPrice,
+      itemsPrice: `$${subtotalPrice}`,
+      shippingPrice: `$${shippingPrice}`,
+      taxPrice: `$${roundedTaxPrice}`,
+      totalPrice: `$${totalPrice}`,
     }
 
     const createdOrder = { orderedItems, shippingAddress, paymentMethod, orderPrices }

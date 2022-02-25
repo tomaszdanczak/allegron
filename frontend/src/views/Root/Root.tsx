@@ -8,6 +8,7 @@ import ProductScreen from 'views/ProductScreen/ProductScreen'
 import ShippingAddressScreen from 'views/ShippingAddressScreen/ShippingAddressScreen'
 import PaymentMethodScreen from 'views/PaymentMethodScreen/PaymentMethodScreen'
 import PlaceOrderScreen from 'views/PlaceOrderScreen/PlaceOrderScreen'
+import OrderScreen from 'views/OrderScreen/OrderScreen'
 
 function Root() {
   return (
@@ -22,6 +23,7 @@ function Root() {
         <Route path="/shipping" element={<ShippingAddressScreen />} />
         <Route path="/payment" element={<PaymentMethodScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
+        <Route path="/order/:id" element={<OrderScreen />} />
       </Routes>
     </MainTemplate>
   )
