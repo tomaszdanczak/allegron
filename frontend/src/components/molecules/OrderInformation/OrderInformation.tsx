@@ -45,10 +45,10 @@ export default function OrderInformation() {
     }
 
     const orderPrices = {
-      itemsPrice: subtotalPrice,
-      shippingPrice,
-      taxPrice: roundedTaxPrice,
-      totalPrice,
+      itemsPrice: `$${subtotalPrice}`,
+      shippingPrice: `$${shippingPrice}`,
+      taxPrice: `$${roundedTaxPrice}`,
+      totalPrice: `$${totalPrice}`,
     }
 
     const createdOrder = { orderedItems, shippingAddress, paymentMethod, orderPrices }
