@@ -30,6 +30,16 @@ class OrderController {
       res.status(401).send({ message: "Order Not Found" });
     }
   }
+
+  async getMineOrders(req, res) {
+    const orders = await Order.find({ user: req.user._id });
+
+    if (orders) {
+      res.send(orders);
+    } else {
+      res.status(401).send({ message: "Orders Not Found" });
+    }
+  }
 }
 
 module.exports = new OrderController();

@@ -28,11 +28,15 @@ router.post(
   isAuth,
   expressAsyncHandler(OrderController.saveOrder)
 );
-
 router.get(
   "/api/orders/:id",
   isAuth,
   expressAsyncHandler(OrderController.getOrder)
+);
+router.get(
+  "/api/orders/mine",
+  isAuth,
+  expressAsyncHandler(OrderController.getMineOrders)
 );
 
 module.exports = router;
