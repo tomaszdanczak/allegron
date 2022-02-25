@@ -31,7 +31,7 @@ export default function OrderInformation() {
         quantity,
         image: { imageSrc: image.imageSrc, imageAlt: image.imageAlt },
         price: `$${priceInfo.price}`,
-        description: description[0],
+        description,
         product: _id,
       }
     })
