@@ -20,6 +20,16 @@ class OrderController {
         .send({ message: "New Order Created", order: createdOrder });
     }
   }
+
+  async getOrder(req, res) {
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+      res.send(order);
+    } else {
+      res.status(401).send({ message: "Order Not Found" });
+    }
+  }
 }
 
 module.exports = new OrderController();
