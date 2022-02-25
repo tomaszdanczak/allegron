@@ -9,6 +9,7 @@ import ShippingAddressScreen from 'views/ShippingAddressScreen/ShippingAddressSc
 import PaymentMethodScreen from 'views/PaymentMethodScreen/PaymentMethodScreen'
 import PlaceOrderScreen from 'views/PlaceOrderScreen/PlaceOrderScreen'
 import OrderScreen from 'views/OrderScreen/OrderScreen'
+import OrderHistoryScreen from 'views/OrderHistoryScreen/OrderHistoryScreen'
 
 function Root() {
   return (
@@ -24,6 +25,7 @@ function Root() {
         <Route path="/payment" element={<PaymentMethodScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
         <Route path="/order/:id" element={<OrderScreen />} />
+        <Route path="/orderhistory" element={<OrderHistoryScreen />} />
       </Routes>
     </MainTemplate>
   )
